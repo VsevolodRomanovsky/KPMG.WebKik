@@ -1,0 +1,66 @@
+﻿<div *ngIf="model" class="container">
+    <div class="row">
+        <div class="col-sm-offset-4 col-sm-4">
+            <h3>{{title}}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <form class="form-horizontal" (ngSubmit)="onSubmit()" #formElement="ngForm">
+            <div class="form-group">
+                <label for="year" class="col-sm-4 control-label">Дата создания</label>
+                <div class="col-sm-8">
+                    <output class="form-control">{{model.CreatedDate | date: 'shortDate'}}</output>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="company" class="col-sm-4 control-label">Компания</label>
+                <div class="col-sm-8">
+                    <select class="form-control"
+                            [(ngModel)]="model.ProjectCompanyId"
+                            name="company"
+                            id="company"
+                            required
+                            [disabled]="!isNew"
+                            notification-companies-options="{{projectId}}"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="correction" class="col-sm-4 control-label">Год</label>
+                <div class="col-sm-8">
+                    <input type="text"
+                           class="form-control"
+                           required
+                           id="year"
+                           name="year"
+                           [(ngModel)]="model.Year">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="correction" class="col-sm-4 control-label">Корректировка</label>
+                <div class="col-sm-8">
+                    <output class="form-control">{{model.Correction}}</output>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="userLogin" class="col-sm-4 control-label">Подписант</label>
+                <div class="col-sm-8">
+                    <select class="form-control"
+                            signatory-options="{{model.ProjectCompanyId}}"
+                            [(ngModel)]="model.SignatoryId"
+                            id="signatoryCode"
+                            name="signatoryCode"
+                            required></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <button type="submit" class="btn btn-primary" [disabled]="!formElement.form.valid">Сохранить и Рассчитать</button>
+                    <button type="button" class="btn btn-default" [disabled]="isNew" (click)="getFile()">Скачать</button>
+                    <button type="button" class="btn btn-default" onclick="window.history.back()">Назад</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

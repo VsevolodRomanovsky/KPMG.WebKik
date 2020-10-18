@@ -1,0 +1,389 @@
+﻿<div class="container" *ngIf="model">
+	<div class="row">
+		<div class="center-block text-center">
+			<h3>Расчет доходов и расходов, а также сумм накопленной переоценки, исключаемых из прибыли КИК в случае реализации ценных бумаг и/или имущественных прав (в том числе долей/паев) в пользу "Компании" или его российских взаимозависимых лиц в связи с ликвидацией КИК*</h3>
+		</div>
+	</div>
+	<form #register11Form="ngForm" class="form-horizontal">
+		<company-in-register [company-id]="shareId"></company-in-register>
+		<div class="form-group">
+			<label for="Currency" class="col-sm-6 control-label">Валюта</label>
+			<div class="col-sm-6">
+				<input type="text"
+					   class="form-control required"
+					   required
+					   id="Currency"
+					   name="Currency"
+					   [(ngModel)]="model.Currency">
+			</div>
+			</div>
+			<div class="form-group">
+			<label for="DecisionOfLiquidationData" class="col-sm-6 control-label">Дата принятия решения о ликвидации КИК (дата уведомления государственного органа, осуществляющего государственную регистрацию юридических лиц)</label>
+			<div class="col-sm-6">
+				<input type="text"
+					   class="form-control date date-picker"
+					   id="DecisionOfLiquidationData"
+					   name="DecisionOfLiquidationData"
+					   [(date)]="model.DecisionOfLiquidationData">
+			</div>
+				</div>
+		<div class="form-group">
+			<label for="CompletionOfLiquidationData" class="col-sm-6 control-label">Дата завершения процедуры ликвидации КИК</label>
+			<div class="col-sm-6">
+				<input type="text"
+					   class="form-control date date-picker"
+					   id="CompletionOfLiquidationData"
+					   name="CompletionOfLiquidationData"
+					   [(date)]="model.CompletionOfLiquidationData">
+			</div>
+			</div>
+		<table class="table table-bordered table-hover text-center" [hidden]="isNew">
+			<thead>
+				<tr>
+					<th rowspan="4"></th>
+					<th rowspan="3">"№ п/п"</th>
+					<th rowspan="3">Вид реализованного финансового актива </th>
+					<th colspan="5">Информация о сделке </th>
+					<th colspan="3">Доход, полученный КИК от реализации финансового актива </th>
+
+					<th rowspan="3">Рыночная стоимость</th>
+					<th colspan="4">Стоимость по данным бухгалтерского учета на дату перехода права собственности (выбытия)</th>
+					<th rowspan="3">Доход, исключаемый из прибыли (убытка) КИК</th>
+					<th rowspan="3">Расход, исключаемый из прибыли (убытка) КИК</th>
+				</tr>
+				<tr>
+					<th rowspan="2">наименование покупателя</th>
+					<th rowspan="2">№ договора реализации</th>
+					<th rowspan="2">дата перехода права собственности</th>
+					<th rowspan="2">эмитент</th>
+					<th rowspan="2">№и дата  выпуска</th>
+
+					<th rowspan="2">всего</th>
+					<th rowspan="2">в т.ч. цена реализации финансового актива </th>
+					<th rowspan="2">в т.ч. иной доход (процентный, купонный)</th>
+
+					<th rowspan="2">всего</th>
+					<th rowspan="2">в т.ч. цена приобретения</th>
+					<th colspan="2">в т.ч. сумма накопленной переоценки на дату перехода права собственности (выбытия) (сальдо переоценок)**</th>
+				</tr>
+				<tr>
+					<th>всего</th>
+					<th>в т.ч. за отчетный финансовый год</th>
+				</tr>
+				<tr>
+					<th>1</th>
+					<th>2</th>
+					<th>3</th>
+					<th>4</th>
+					<th>5</th>
+					<th>6</th>
+					<th>7</th>
+					<th>8</th>
+					<th>9</th>
+					<th>10</th>
+					<th>11</th>
+					<th>12</th>
+					<th>13</th>
+					<th>14</th>
+					<th>15</th>
+					<th>16</th>
+					<th>17</th>
+				</tr>
+			</thead>
+			<tbody>
+				<ng-container *ngFor='let section of sectionList'>
+					<tr>
+						<td colspan="17">
+							{{section.name}}
+							<button (click)="addRow(section.id)" style="float: left" id="{{section.id}}" class="btn btn-default btn-sm" type="button">
+								<span class="glyphicon glyphicon-plus"></span>
+							</button>
+						</td>
+					</tr>
+					<tr *ngFor="let data of (model.Register11Data | sectionGroup:section.id); let dataIndex = index">
+						<td>
+							<button (click)='modalOpen(dataIndex, section.id)' type="button" class="btn btn-default btn-sm">
+								<span class="glyphicon glyphicon-edit"></span>
+							</button>
+							<button (click)='delete(dataIndex)' type="button" class="btn btn-default btn-sm">
+								<span class="glyphicon glyphicon-remove"></span>
+							</button>
+						</td>
+						<td>
+							{{dataIndex}}
+						</td>
+						<td>
+							{{data.RealizedFinancialAsset}}
+						</td>
+						<td>
+							{{data.BuyerName}}
+						</td>
+						<td>
+							{{data.ContractOfRealizationNo}}
+						</td>
+						<td>
+							{{data.PropertyRightTransitionData | date:'shortDate'}}
+						</td>
+						<td>
+							{{data.Issuer}}
+						</td>
+						<td>
+							{{data.DateOfIssueNumber}}
+						</td>
+						<td>
+							{{data.IncomeFromRealizationOfAssetSummary}}
+						</td>
+						<td>
+							{{data.IncomeFromRealizationOfAssetSellPrice}}
+						</td>
+						<td>
+							{{data.IncomeFromRealizationOfAssetOthers}}
+						</td>
+						<td>
+							{{data.MarketValue}}
+						</td>
+						<td>
+							{{data.CostForTransitionOfPropertyRightDateSummary}}
+						</td>
+						<td>
+							{{data.CostForTransitionOfPropertyRightDateAcquisitionPrice}}
+						</td>
+						<td>
+							{{data.CostForTransitionOfPropertyRightDateRevaluationSummary}}
+						</td>
+						<td>
+							{{data.CostForTransitionOfPropertyRightDateRevaluationForCurrentYear}}
+						</td>
+						<td>
+							{{ calculateIncomeExcludedFromProfitLoss(data.Id)}}
+						</td>
+						<td>
+							{{calculateExpenseExcludedFromProfitLoss(data.Id)}}
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Всего</td>
+						<td>X</td>
+						<td>X</td>
+						<td>X</td>
+						<td>X</td>
+						<td>X</td>
+						<td>X</td>
+						<td>{{calculateGroupTotal1(section.id)}}</td>
+						<td>{{calculateGroupTotal2(section.id)}}</td>
+						<td>{{calculateGroupTotal3(section.id)}}</td>
+						<td>{{calculateGroupTotal4(section.id)}}</td>
+						<td>{{calculateGroupTotal5(section.id)}}</td>
+						<td>{{calculateGroupTotal6(section.id)}}</td>
+						<td>{{calculateGroupTotal7(section.id)}}</td>
+						<td>{{calculateGroupTotal8(section.id)}}</td>
+						<td>
+							{{ calculateIncomeExcludedFromProfitLossTotal(section.id)}}
+						</td>
+						<td>
+							{{ calculateExpenseExcludedFromProfitLossTotal(section.id)}}
+						</td>
+					</tr>
+				</ng-container>
+				<tr>
+					<td></td>
+					<td>Всего</td>
+					<td>X</td>
+					<td>X</td>
+					<td>X</td>
+					<td>X</td>
+					<td>X</td>
+					<td>X</td>
+					<td>{{calculateGroupTotal1(-1)}}</td>
+					<td>{{calculateGroupTotal2(-1)}}</td>
+					<td>{{calculateGroupTotal3(-1)}}</td>
+					<td>{{calculateGroupTotal4(-1)}}</td>
+					<td>{{calculateGroupTotal5(-1)}}</td>
+					<td>{{calculateGroupTotal6(-1)}}</td>
+					<td>{{calculateGroupTotal7(-1)}}</td>
+					<td>{{calculateGroupTotal8(-1)}}</td>
+					<td>
+						{{ calculateIncomeExcludedFromProfitLossTotal(-1)}}
+					</td>
+					<td>
+						{{ calculateExpenseExcludedFromProfitLossTotal(-1)}}
+					</td>
+				</tr>
+</tbody>
+		</table>
+		<div class="form-group">
+			<div class="col-sm-offset-6 col-sm-6">
+				<!--<button type="button" (click)="ModalOpen()" class="btn btn-default" [style.display]="isNew? 'none' :'inline'"  [hidden]="isNew">Добавить</button>-->
+				<button type="button" (click)="Calculate()" class="btn btn-default" [style.display]="isNew? 'none' : 'inline'">Расcчитать</button>
+				<button type="button" (click)="Save()" class="btn btn-default" [disabled]="!register11Form.form.valid">Сохранить</button>
+				<button type="button" (click)="Back()" class="btn btn-default">Вернуться</button>
+			</div>
+		</div>
+
+		<modal #myModal>
+			<modal-body>
+				<div class="form-group">
+					<label for="RealizedFinancialAsset">Вид реализованного финансового актива</label>
+					<div>
+						<input type="text"
+							   class="form-control"
+
+							   id="RealizedFinancialAsset"
+							   name="RealizedFinancialAsset"
+							   [(ngModel)]="register11DataItem.RealizedFinancialAsset">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="BuyerName">Информация о сделке - наименование покупателя</label>
+					<div>
+						<input type="text"
+							   class="form-control"
+
+							   id="BuyerName"
+							   name="BuyerName"
+							   [(ngModel)]="register11DataItem.BuyerName">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="ContractOfRealizationNo">Информация о сделке - № договора реализации</label>
+					<div>
+						<input type="text"
+							   class="form-control"
+
+							   id="ContractOfRealizationNo"
+							   name="ContractOfRealizationNo"
+							   [(ngModel)]="register11DataItem.ContractOfRealizationNo">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="PropertyRightTransitionData">Информация о сделке - дата перехода права собственности</label>
+					<div>
+						<input type="text"
+							   class="form-control date date-picker"
+							   id="PropertyRightTransitionData"
+							   name="PropertyRightTransitionData"
+							   [(date)]="register11DataItem.PropertyRightTransitionData">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="Issuer">Информация о сделке - эмитент</label>
+					<div>
+						<input type="text"
+							   class="form-control"
+
+							   id="Issuer"
+							   name="Issuer"
+							   [(ngModel)]="register11DataItem.Issuer">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="DateOfIssueNumber">Информация о сделке - №и дата  выпуска</label>
+					<div>
+						<input type="text"
+							   class="form-control"
+
+							   id="DateOfIssueNumber"
+							   name="DateOfIssueNumber"
+							   [(ngModel)]="register11DataItem.DateOfIssueNumber">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="DateOfIssueNumber">Доход, полученный КИК от реализации финансового актива - всего</label>
+					<div>
+						<input type="text"
+							   class="form-control"
+
+							   id="IncomeFromRealizationOfAssetSummary"
+							   name="IncomeFromRealizationOfAssetSummary"
+							   [(ngModel)]="register11DataItem.IncomeFromRealizationOfAssetSummary">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="IncomeFromRealizationOfAssetSellPrice">Доход, полученный КИК от реализации финансового актива - в т.ч. цена реализации финансового актива </label>
+					<div>
+						<input type="text"
+							   class="form-control"
+
+							   id="IncomeFromRealizationOfAssetSellPrice"
+							   name="IncomeFromRealizationOfAssetSellPrice"
+							   [(ngModel)]="register11DataItem.IncomeFromRealizationOfAssetSellPrice">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="IncomeFromRealizationOfAssetOthers">Доход, полученный КИК от реализации финансового актива - в т.ч. иной доход (процентный, купонный) </label>
+					<div>
+						<input type="text"
+							   class="form-control"
+
+							   id="IncomeFromRealizationOfAssetOthers"
+							   name="IncomeFromRealizationOfAssetOthers"
+							   [(ngModel)]="register11DataItem.IncomeFromRealizationOfAssetOthers">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="MarketValue">Рыночная стоимость</label>
+					<div>
+						<input type="text"
+							   class="form-control"
+
+							   id="MarketValue"
+							   name="MarketValue"
+							   [(ngModel)]="register11DataItem.MarketValue">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="CostForTransitionOfPropertyRightDateSummary">Стоимость по данным бухгалтерского учета на дату перехода права собственности (выбытия) - всего</label>
+					<div>
+						<input type="text"
+							   class="form-control"
+
+							   id="CostForTransitionOfPropertyRightDateSummary"
+							   name="CostForTransitionOfPropertyRightDateSummary"
+							   [(ngModel)]="register11DataItem.CostForTransitionOfPropertyRightDateSummary">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="CostForTransitionOfPropertyRightDateAcquisitionPrice">Стоимость по данным бухгалтерского учета на дату перехода права собственности (выбытия) - в т.ч. цена приобретения</label>
+					<div>
+						<input type="text"
+							   class="form-control"
+
+							   id="CostForTransitionOfPropertyRightDateAcquisitionPrice"
+							   name="CostForTransitionOfPropertyRightDateAcquisitionPrice"
+							   [(ngModel)]="register11DataItem.CostForTransitionOfPropertyRightDateAcquisitionPrice">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="CostForTransitionOfPropertyRightDateRevaluationSummary">Стоимость по данным бухгалтерского учета на дату перехода права собственности (выбытия) - в т.ч. сумма накопленной переоценки на дату перехода права собственности (выбытия)
+(сальдо переоценок)** - всего</label>
+					<div>
+						<input type="text"
+							   class="form-control"
+
+							   id="CostForTransitionOfPropertyRightDateRevaluationSummary"
+							   name="CostForTransitionOfPropertyRightDateRevaluationSummary"
+							   [(ngModel)]="register11DataItem.CostForTransitionOfPropertyRightDateRevaluationSummary">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="CostForTransitionOfPropertyRightDateRevaluationForCurrentYear">Стоимость по данным бухгалтерского учета на дату перехода права собственности (выбытия) - в т.ч. сумма накопленной переоценки на дату перехода права собственности (выбытия)
+(сальдо переоценок)** - в т.ч. за отчетный финансовый год</label>
+					<div>
+						<input type="text"
+							   class="form-control"
+
+							   id="CostForTransitionOfPropertyRightDateRevaluationForCurrentYear"
+							   name="CostForTransitionOfPropertyRightDateRevaluationForCurrentYear"
+							   [(ngModel)]="register11DataItem.CostForTransitionOfPropertyRightDateRevaluationForCurrentYear">
+					</div>
+				</div>
+			</modal-body>
+			<modal-footer>
+				<button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalClose()">Отменить</button>
+				<button type="button" class="btn btn-primary" (click)="modalSave()">Сохранить</button>
+			</modal-footer>
+		</modal>
+	</form>
+</div>
+<preloader *ngIf="isLoading"></preloader>

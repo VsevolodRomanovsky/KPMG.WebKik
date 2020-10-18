@@ -1,0 +1,46 @@
+﻿<div *ngIf="company" class="container">
+    <p>&nbsp;</p>
+    <div class="row">
+        <div class="col-sm-12">
+            <nav class="breadcrumb">
+                <project-in-company [project-id]="projectId"></project-in-company>
+                <span> > </span>
+                <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies']">Компании</a>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId]">Информация</a>
+                <a class="list-group-item ">Владения</a>
+                <a class="list-group-item active" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/taxexemptionlist']">Освобождение от налогов</a>
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/registers']">Регистры</a>
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/notificationsofparticipation']">Уведомления об участии</a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="row" *ngIf="shareList?.length">
+                <div class="col-sm-12">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>Название</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let companyshare of shareList; let companyIndex = index"
+                                [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/share/'+ companyshare.DependentProjectCompany.Id +'/taxexemption']"
+                                class="kik-clickable">
+                                <td>
+                                    {{companyshare.DependentProjectCompany.Name}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<preloader *ngIf="isLoading"></preloader>

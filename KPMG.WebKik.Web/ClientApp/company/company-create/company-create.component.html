@@ -1,0 +1,52 @@
+﻿
+<div class="container" *ngIf="model">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>Создание компании</h3>
+        </div>
+    </div>
+    <form #createForm="ngForm" class="form-horizontal" (ngSubmit)="submit()">
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Наименование компании</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Наименование компании"
+                       required
+                       id="name"
+                       name="name"
+                       ngControl=”#name” 
+                       [(ngModel)]="model.Name"
+                        #name="ngModel"
+                >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Статус компании</label>
+            <div class="col-sm-5">
+                <select class="form-control" [(ngModel)]="model.State" #selectedState name="State" required>
+                    <option *ngFor="let state of companyStates" [value]="state.Key">{{state.Value}}</option>
+                </select>
+            </div>
+            </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Резидент РФ</label>
+            <div class="col-sm-2">
+                <input type="checkbox"
+                       class="checkbox-inline"
+                       placeholder="Резидент РФ"
+                       id="isResident"
+                       name="isResident"
+                       [(ngModel)]="model.IsResident"
+                       >
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <button type="submit" [disabled]="!createForm.form.valid" class="btn btn-default">Далее</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

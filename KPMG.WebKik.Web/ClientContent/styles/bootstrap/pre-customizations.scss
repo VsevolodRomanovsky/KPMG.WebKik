@@ -1,0 +1,142 @@
+﻿// Customize Bootstrap variables that get imported before the original Bootstrap variables.
+// Thus original Bootstrap variables can depend on values from here.
+
+
+
+// Other font size variables are based on this on, so this absolutely should go into the
+// pre-customizations.scss file.
+// $font-size-base: 16px;
+
+// Here is what is in the _variables.scss file of Bootstrap 3
+// $font-size-base:          14px !default;
+// $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
+// $font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
+
+// If you're using a custom icon font path, specify it as follows
+// $icon-font-path: ../fonts // This path is relative to this file
+// $icon-font-name: 'glyphicons' // The name of the font you want to use
+// And be sure to set useCustomIconFontPath to true in .bootstraprc.
+
+	.KPMGWeb-ThinItalic {
+	font-family: 'KPMG Web';
+	font-weight: 100;
+	font-style: italic;
+	font-stretch: normal;
+	}
+
+	.KPMGWeb-ExtraLightItalic {
+	font-family: 'KPMG Web';
+	font-weight: 200;
+	font-style: italic;
+	font-stretch: normal;
+	}
+
+	.KPMGWeb-Thin {
+	font-family: 'KPMG Web';
+	font-weight: 100;
+	font-style: normal;
+	font-stretch: normal;
+	}
+
+	.KPMGWeb-Light {
+	font-family: 'KPMG Web';
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	}
+
+	.KPMGWeb-ExtraLight {
+	font-family: 'KPMG Web';
+	font-weight: 200;
+	font-style: normal;
+	font-stretch: normal;
+	}
+
+	.KPMGWeb-LightItalic {
+	font-family: 'KPMG Web';
+	font-weight: 300;
+	font-style: italic;
+	font-stretch: normal;
+	}
+
+	@font-face {
+	font-family: 'KPMG Web';
+	src: url('../fonts/KPMG Web-Thin Italic.eot');
+	src: url('../fonts/KPMG Web-Thin Italic.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/KPMG Web-Thin Italic.woff2') format('woff2'),
+		 url('../fonts/KPMG Web-Thin Italic.woff') format('woff'),
+		 url('../fonts/KPMG Web-Thin Italic.ttf') format('truetype'),
+		 url('../fonts/KPMG Web-Thin Italic.svg#KPMG Web-Thin Italic') format('svg');
+	font-weight: 100;
+	font-style: italic;
+	font-stretch: normal;
+	}
+
+	@font-face {
+	font-family: 'KPMG Web';
+	src: url('../fonts/KPMG Web-Extra Light Italic.eot');
+	src: url('../fonts/KPMG Web-Extra Light Italic.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/KPMG Web-Extra Light Italic.woff2') format('woff2'),
+		 url('../fonts/KPMG Web-Extra Light Italic.woff') format('woff'),
+		 url('../fonts/KPMG Web-Extra Light Italic.ttf') format('truetype'),
+		 url('../fonts/KPMG Web-Extra Light Italic.svg#KPMG Web-Extra Light Italic') format('svg');
+	font-weight: 200;
+	font-style: italic;
+	font-stretch: normal;
+	}
+
+	@font-face {
+	font-family: 'KPMG Web';
+	src: url('../fonts/KPMG Web-Thin.eot');
+	src: url('../fonts/KPMG Web-Thin.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/KPMG Web-Thin.woff2') format('woff2'),
+		 url('../fonts/KPMG Web-Thin.woff') format('woff'),
+		 url('../fonts/KPMG Web-Thin.ttf') format('truetype'),
+		 url('../fonts/KPMG Web-Thin.svg#KPMG Web-Thin') format('svg');
+	font-weight: 100;
+	font-style: normal;
+	font-stretch: normal;
+	}
+
+	@font-face {
+	font-family: 'KPMG Web';
+	src: url('../fonts/KPMG Web-Light.eot');
+	src: url('../fonts/KPMG Web-Light.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/KPMG Web-Light.woff2') format('woff2'),
+		 url('../fonts/KPMG Web-Light.woff') format('woff'),
+		 url('../fonts/KPMG Web-Light.ttf') format('truetype'),
+		 url('../fonts/KPMG Web-Light.svg#KPMG Web-Light') format('svg');
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	}
+
+	@font-face {
+	font-family: 'KPMG Web';
+	src: url('../fonts/KPMG Web-Extra Light.eot');
+	src: url('../fonts/KPMG Web-Extra Light.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/KPMG Web-Extra Light.woff2') format('woff2'),
+		 url('../fonts/KPMG Web-Extra Light.woff') format('woff'),
+		 url('../fonts/KPMG Web-Extra Light.ttf') format('truetype'),
+		 url('../fonts/KPMG Web-Extra Light.svg#KPMG Web-Extra Light') format('svg');
+	font-weight: 200;
+	font-style: normal;
+	font-stretch: normal;
+	}
+
+	@font-face {
+	font-family: 'KPMG Web';
+	src: url('../fonts/KPMG Web-Light Italic.eot');
+	src: url('../fonts/KPMG Web-Light Italic.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/KPMG Web-Light Italic.woff2') format('woff2'),
+		 url('../fonts/KPMG Web-Light Italic.woff') format('woff'),
+		 url('../fonts/KPMG Web-Light Italic.ttf') format('truetype'),
+		 url('../fonts/KPMG Web-Light Italic.svg#KPMG Web-Light Italic') format('svg');
+	font-weight: 300;
+	font-style: italic;
+	font-stretch: normal;
+	}
+
+
+$brand-primary: #00338D !default; // #337ab7
+$brand-success: #00338D !default; 

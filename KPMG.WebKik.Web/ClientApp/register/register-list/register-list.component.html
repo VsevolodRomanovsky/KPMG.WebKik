@@ -1,0 +1,76 @@
+﻿<div class="container">
+    <p>&nbsp;</p>
+    <div class="row">
+        <div class="col-sm-12">
+            <nav class="breadcrumb">
+                <project-in-company [project-id]="projectId"></project-in-company>
+                <span> > </span>
+                <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies']">Компании</a>
+            </nav>
+        </div>
+        <div class="col-sm-offset-3 col-sm-9">
+            <div class="center-block text-center">
+                <h3>Учетные регистры</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId]">Информация</a>
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/share']">Владения</a>
+                <a class="list-group-item active" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/kiklist']">КИКи</a>
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/signatories']">Подписанты</a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="row form-group">
+                <label for="year" class="col-sm-2 control-label year-label">Период</label>
+                <div class="col-sm-4">
+                    <select class="form-control" [(ngModel)]="selectedYear" #selected (change)="onSelected(selected.value)" name="year" required>
+                        <option *ngFor="let year of years" [value]="year">{{year}}</option>
+                    </select>
+                </div>
+                <div class="btn-group btn-group">
+                    <button type="button" class="btn btn-default" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-file"></span> Импорт данных
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <span class="btn btn-file">Импорт регистров КИК
+                                <input #fileForeignCompanies type="file" name="xlsx[]" class="file" (change)="onLoadKik($event)" id="attach_fc1" accept=".xlsx">
+                            </span>
+                        </li>
+                        <li>
+                            <span class="btn btn-file">Импорт регистров КЛ
+                                <input #fileForeignLightCompanies type="file" name="xlsx[]" class="file" (change)="onLoadKl($event)" id="attach_fc2" accept=".xlsx">
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row" *ngIf="registerList?.length">
+                <div class="col-sm-12">
+                    <table class="table table-condensed table-hover">
+                        <tbody>
+                            <tr *ngFor="let register of registerList"
+                                [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/share/' + shareId + '/registers/' + register.Link + '/' + selectedYear]"
+                                class="kik-clickable">
+                                <td>
+                                    <span *ngIf="register.IsFilled">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </span>
+                                </td>
+                                <td>
+                                    {{register.Name}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<preloader *ngIf="isLoading"></preloader>

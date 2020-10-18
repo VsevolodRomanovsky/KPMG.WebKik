@@ -1,0 +1,63 @@
+﻿
+<div *ngIf="company" class="container">
+    <p>&nbsp;</p>
+    <div class="row">
+        <div class="col-sm-12">
+            <nav class="breadcrumb">
+                <project-in-company [project-id]="projectId"></project-in-company>
+                <span> > </span>
+                <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies']">Компании</a>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId]">Информация</a>
+                <a class="list-group-item " [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/share']">Владения</a>
+                <a class="list-group-item active" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/kiklist']">КИКи</a>
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/signatories']">Подписанты</a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="row" *ngIf="shareList?.length">
+                <div class="col-sm-12">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>Компания</th>
+                                <th></th>
+                                <th></th>
+                                <th>Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let companyshare of shareList">
+                                <td>
+                                    {{companyshare.Name}}
+                                </td>
+                                <td>
+                                    <a [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/share/' + companyshare.Id + '/registers']">
+                                        Регистры
+                                    </a>
+                                </td>
+                                <td>
+                                    <a [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/share/' + companyshare.Id + '/taxexemption']">
+                                        Налоговый статус
+                                    </a>
+                                </td>
+                                <td *ngIf="companyshare.IsExemptFromTaxes">
+                                    Освобожден
+                                </td>
+                                <td *ngIf="!companyshare.IsExemptFromTaxes">
+                                   
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<preloader *ngIf="isLoading"></preloader>

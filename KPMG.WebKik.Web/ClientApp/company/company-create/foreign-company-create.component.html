@@ -1,0 +1,109 @@
+﻿<div *ngIf="model" class="container">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>Дополнительная информация о компании</h3>
+        </div>
+    </div>
+    <form #createForm="ngForm" (ngSubmit)="onSubmit()" novalidate class="form-horizontal">
+        <!--<div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Номер иностранной компании</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Номер иностранной компании"
+                       required
+                       id="number"
+                       name="number"
+                       [(ngModel)]="model.ForeignCompany.Number">
+            </div>
+        </div>-->
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Полное наименование в латинской транскрипции</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Полное наименование в латинской транскрипции"
+                       required
+                       id="name"
+                       name="name"
+                       [(ngModel)]="model.ForeignCompany.Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Полное наименование в русской транскрипции</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Полное наименование в русской транскрипции"
+                       required
+                       id="fullName"
+                       name="fullName"
+                       [(ngModel)]="model.ForeignCompany.FullName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="role" class="col-sm-4 control-label">Cтрана, в которой учреждена иностранная компания</label>
+            <div class="col-sm-5">
+                <select class="form-control"
+                        directory-options="CountryCode"
+                        [(ngModel)]="model.ForeignCompany.CountryCodeId"
+                        id="code"
+                        name="code"
+                        required></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Регистрационный номер в стране регистрации</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Регистрационный номер в стране регистрации"
+                       required
+                       id="registrationNumber"
+                       name="registrationNumber"
+                       [(ngModel)]="model.ForeignCompany.RegistrationNumber">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="taxCode" class="col-sm-4 control-label">Код налогоплательщика в стране регистрации или аналог</label>
+            <div class="col-sm-5">
+                <select class="form-control"
+                        directory-options="TaxPayerCode"
+                        [(ngModel)]="model.ForeignCompany.TaxPayerCodeId"
+                        id="taxCode"
+                        name="taxCode"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Адрес в стране регистрации</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Адрес в стране регистрации"
+                       required
+                       id="address"
+                       name="address"
+                       [(ngModel)]="model.ForeignCompany.Address">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Дата регистрации</label>
+            <div class="col-sm-5">
+                <input type="date"
+                       class="form-control"
+                       placeholder="Дата регистрации"
+                       required
+                       id="FoundDate"
+                       name="FoundDate"
+                       [(ngModel)]="model.ForeignCompany.FoundDate">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-5">
+                <button type="submit" [disabled]="!createForm.form.valid" class="btn btn-default">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

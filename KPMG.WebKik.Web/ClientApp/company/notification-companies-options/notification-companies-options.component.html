@@ -1,0 +1,6 @@
+﻿<option></option>
+<option *ngFor="let company of companyList"
+        [attr.selected]="company.Id == selectedId ? true : null"
+        [value]="company.Id">
+    {{company.Name}}
+</option>

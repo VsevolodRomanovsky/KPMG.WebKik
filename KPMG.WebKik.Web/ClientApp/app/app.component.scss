@@ -1,0 +1,23 @@
+﻿.body-content {
+    padding-top: 50px;
+}
+
+:host /deep/ {
+
+    .kik-clickable {
+        cursor: pointer;
+    }
+
+    .kik-inline-block {
+        display: inline-block;
+        vertical-align: baseline;
+    }
+
+    .ng-invalid:not(form) {
+        border-left: 5px solid #a94442;
+    }
+
+    h1.kik, h2.kik, h3.kik {
+        color: #00338D;
+    }
+}

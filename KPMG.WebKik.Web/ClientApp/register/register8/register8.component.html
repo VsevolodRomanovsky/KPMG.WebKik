@@ -1,0 +1,64 @@
+﻿<div class="container" *ngIf="model">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>Расчет расходов на формирование резервов, доходов от восстановления резервов, не учитываемых при формировании прибыли КИК </h3>
+        </div>
+    </div>
+    <form #register8Form="ngForm" class="form-horizontal">
+        <company-in-register [company-id]="shareId"></company-in-register>
+        <div class="form-group">
+            <label for="Currency" class="col-sm-6 control-label">Валюта</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       class="form-control"
+                       required
+                       id="Currency"
+                       name="Currency"
+                       [(ngModel)]="model.Currency">
+            </div>
+			<!--<label for="Year" class="col-sm-6 control-label">За период</label>
+			<div class="col-sm-6">
+				<input type="text"
+					   class="form-control"
+					   required
+					   id="Year"
+					   name="Year"
+					   [(ngModel)]="model.Year">
+			</div>-->
+        </div>
+		<p-dataTable [value]="model.Register8Data" [editable]="true" >
+			<p-headerColumnGroup>
+				<p-row>
+					<p-column header="№ п/п" ></p-column>
+					<p-column header="Вид резерва, учитываемого в финансовой отчетности КИК"></p-column>
+					<p-column header="Расходы на формирование резерва в финансовом году"></p-column>
+					<p-column header="Расходы, уменьшающие величину резеврва (использование резерва) в финансовом году"></p-column>
+					<p-column header="Расходы на формирование резерва, не учитываемые при формировании прибыли КИК"></p-column>
+					<p-column header="Доходы от восстановления резерва (в случае, если резерв был восстановлен) в финансовом году"></p-column>
+				</p-row>
+				<p-row>
+					<p-column header="1"></p-column>
+					<p-column header="2"></p-column>
+					<p-column header="3"></p-column>
+					<p-column header="4"></p-column>
+					<p-column header="5"></p-column>
+					<p-column header="6"></p-column>
+				</p-row>
+			</p-headerColumnGroup>
+				<p-column field="Register8DataTypeId" [editable]="false" ></p-column>
+				<p-column field="ReserveTitle" [editable]="false"></p-column>
+				<p-column field="ExpensesFormationOfReserve" [editable]="true"></p-column>
+				<p-column field="ExpensesReducedOfReserve" [editable]="true"></p-column>
+				<p-column field="ExpensesNotConsideredInProfit" [editable]="false"></p-column>
+				<p-column field="IncomeFromRecoveryOfReserve" [editable]="true" ></p-column>
+			</p-dataTable>
+			<div class="form-group">
+				<div class="col-sm-offset-6 col-sm-6">
+					<button type="button" (click)="Calculate()" class="btn btn-default">Расcчитать</button>
+					<button type="button" (click)="Save()" [disabled]="!register8Form.form.valid" class="btn btn-default">Сохранить</button>
+				</div>
+			</div>
+</form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

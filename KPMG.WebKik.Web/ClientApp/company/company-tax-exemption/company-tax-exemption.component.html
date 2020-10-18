@@ -1,0 +1,79 @@
+﻿<div class="container" *ngIf="model">
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            <nav class="breadcrumb">
+                <project-in-company [project-id]="projectId"></project-in-company>
+                <span> > </span>
+                <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies']">Компании</a>
+            </nav>
+        </div>
+        <div class="col-sm-offset-3 col-sm-9">
+            <div class="center-block text-center">
+                <h3>Освобождение от налогов</h3>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId]">Информация</a>
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/share']">Владения</a>
+                <a class="list-group-item active" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/kiklist']">КИКи</a>
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/signatories']">Подписанты</a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <form #companyTaxStateFrom="ngForm" class="form-horizontal">
+                <div class="row form-group">
+                    <label for="year" class="col-sm-2 control-label year-label">Период</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" [(ngModel)]="selectedYear" #selected (change)="onSelected(selected.value)" name="year" required>
+                            <option *ngFor="let year of years" [value]="year">{{year}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngIf="model.Result === true" class="panel panel-success">                    
+                    <div class="panel-body">
+                        КИК освобождается от налогов на {{selectedYear}} год
+                    </div>                    
+                </div>
+                <div *ngIf="model.Result === false" class="panel panel-danger">
+                    <div class="panel-body">
+                        КИК <strong>не</strong> освобождается от налогов на {{selectedYear}} год
+                    </div>
+                </div>
+                <div *ngFor="let rationaly of rationalyList; let i = index">
+                    <div class="row checkbox-row">
+                        <div class="col-sm-12">
+                            <div class="checkbox-inline">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox"
+                                           id="{{rationaly.Type}}"
+                                           name="{{rationaly.Type}}"
+                                           value="{{rationaly}}"
+                                           (change)="onChange(rationaly, $event)"
+                                           [ngModel]="rationaly.IsChecked"/>
+
+                                    {{rationaly.Name}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div *ngIf="result" class="alert alert-{{result.style}}" role="alert">
+                    {{result.text}}
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" (click)="onSubmit()" class="btn btn-default">Определить налоговый статус</button>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+    <preloader *ngIf="isLoading"></preloader>

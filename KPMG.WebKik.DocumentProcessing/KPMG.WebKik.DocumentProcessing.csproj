@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{038B6ED0-AEB0-4D15-B3A5-E486CC4EAC52}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KPMG.WebKik.DocumentProcessing</RootNamespace>
+    <AssemblyName>KPMG.WebKik.DocumentProcessing</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.80.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.80.1\lib\net40-client\ClosedXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QuickGraph, Version=3.6.61114.0, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QuickGraph.Data, Version=3.6.61114.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QuickGraph.Graphviz, Version=3.6.61114.0, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.Graphviz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QuickGraph.Serialization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.Serialization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExcelDocsImporter.cs" />
+    <Compile Include="ExcelDocsCreator.cs" />
+    <Compile Include="Helpers\ValueConvertHelper.cs" />
+    <Compile Include="Helpers\ValueHelper.cs" />
+    <Compile Include="NotificationOfKIK\KikSheetBase.cs" />
+    <Compile Include="NotificationOfKIK\NotificationOfKIKWorkbook.cs" />
+    <Compile Include="NotificationOfKIK\Sheets\KikSheet1.cs" />
+    <Compile Include="NotificationOfParticipation\NPWorkbook.cs" />
+    <Compile Include="NotificationOfParticipation\Models\ChainParticipant.cs" />
+    <Compile Include="NotificationOfParticipation\Models\CompanyChain.cs" />
+    <Compile Include="NotificationOfParticipation\Models\CompanyNumberContainer.cs" />
+    <Compile Include="NotificationOfParticipation\Models\ControlGround.cs" />
+    <Compile Include="NotificationOfParticipation\NPCompanySheetBase.cs" />
+    <Compile Include="NotificationOfParticipation\NPReportCompany.cs" />
+    <Compile Include="NotificationOfParticipation\NPSheetBase.cs" />
+    <Compile Include="NotificationOfParticipation\Sheets\NPSheet1.cs" />
+    <Compile Include="NotificationOfParticipation\Sheets\NPSheet2.cs" />
+    <Compile Include="NotificationOfParticipation\Sheets\NPSheetA.cs" />
+    <Compile Include="NotificationOfParticipation\Sheets\NPSheetB.cs" />
+    <Compile Include="NotificationOfParticipation\Sheets\NPSheetG.cs" />
+    <Compile Include="NotificationOfParticipation\Sheets\NPSheetV1.cs" />
+    <Compile Include="NotificationOfParticipation\Sheets\NPSheetV.cs" />
+    <Compile Include="SheetBase.cs" />
+    <Compile Include="SheetRangeList.cs" />
+    <Compile Include="Helpers\ExcelRangeHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SheetRange.cs" />
+    <Compile Include="TaxReturn\TaxReturnWorkbook.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Templates\KIK.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\UU.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KPMG.WebKik.Contracts\KPMG.WebKik.Contracts.csproj">
+      <Project>{d67f4e18-34a7-4785-8e06-f090b3ca1f63}</Project>
+      <Name>KPMG.WebKik.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KPMG.WebKik.Data\KPMG.WebKik.Data.csproj">
+      <Project>{6B17871E-C28F-48F8-8B5B-CD4591592643}</Project>
+      <Name>KPMG.WebKik.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KPMG.WebKik.Models\KPMG.WebKik.Models.csproj">
+      <Project>{f0c5a52b-bee8-4eba-93a7-d9bc52c43622}</Project>
+      <Name>KPMG.WebKik.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KPMG.Webkik.Utils\KPMG.Webkik.Utils.csproj">
+      <Project>{2A394526-2544-49D0-800F-5CA4B314A754}</Project>
+      <Name>KPMG.Webkik.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Import\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,88 @@
+﻿
+<div *ngIf="model" class="container">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>Дополнительная информация о компании</h3>
+        </div>
+    </div>
+    <form #createForm="ngForm" (ngSubmit)="onSubmit()" novalidate class="form-horizontal">
+        <!--<div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Номер российской компании</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Номер российской компании"
+                       required
+                       id="number"
+                       name="number"
+                       [(ngModel)]="model.Number">
+            </div>
+        </div>-->
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Полное наименование</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Полное наименование"
+                       required
+                       id="fullName"
+                       name="fullName"
+                       [(ngModel)]="model.FullName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">ОГРН</label>
+            <div class="col-sm-5">
+                <input type="number" maxlength="13"
+                       class="form-control"
+                       placeholder="ОГРН"
+                       required
+                       id="orgn"
+                       name="orgn"
+                       [(ngModel)]="model.OGRN">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">ИНН</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="ИНН"
+                       required
+                       pattern="[0-9]{0,10}"
+                       id="inn"
+                       name="inn"
+                       [(ngModel)]="model.INN">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">КПП</label>
+            <div class="col-sm-5">
+                <input type="text" maxlength="9"
+                       class="form-control"
+                       placeholder="КПП"
+                       required
+                       id="kpp"
+                       name="kpp"
+                       [(ngModel)]="model.KPP">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Публичная компания</label>
+            <div class="col-sm-5">
+                <input type="checkbox"
+                       class="checkbox-inline"
+                       id="isPublic"
+                       name="isPublic"
+                       [(ngModel)]="model.IsPublic">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-5">
+                <button type="submit" [disabled]="!createForm.form.valid" class="btn btn-default">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

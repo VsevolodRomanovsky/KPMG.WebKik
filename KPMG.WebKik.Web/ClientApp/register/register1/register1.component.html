@@ -1,0 +1,566 @@
+﻿<div class="container" *ngIf="model">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>Расчет прибыли КИК на основании финансовой отчетности</h3>
+        </div>
+    </div>
+    <form #registerForm="ngForm" class="form-horizontal">
+        <company-in-register [company-id]="shareId"></company-in-register>
+        <div class="form-group">
+            <label for="Currency" class="col-sm-6 control-label">Валюта</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       class="form-control"
+                       required
+                       id="Currency"
+                       name="Currency"
+                       [(ngModel)]="model.Currency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ProfitAmountBeforeTax" class="col-sm-6 control-label">Прибыль (убыток) до налогообложения по данным финансовой отчетности</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ProfitAmountBeforeTax"
+                       name="ProfitAmountBeforeTax"
+                       [(ngModel)]="model.ProfitAmountBeforeTax">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeKIKNotIncluded" class="col-sm-6 control-label">Доходы, не учитываемые при определении прибыли (убытка) КИК (всего), в том числе:</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="IncomeKIKNotIncluded"
+                       name="IncomeKIKNotIncluded"
+                       [(ngModel)]="model.IncomeKIKNotIncluded">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromRegisteredCapitals" class="col-sm-6 control-label">Доходы от переоценки долей в уставном (складочном) капитале (фонде) организации по справедливой стоимости (кроме выбывших в текущем финансовом году)</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromRegisteredCapitals"
+                       name="IncomeFromRegisteredCapitals"
+                       [(ngModel)]="model.IncomeFromRegisteredCapitals">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromShares" class="col-sm-6 control-label">Доходы от переоценки паев в паевых фондах кооперативов и паевых инвестиционных фондах по справедливой стоимости (кроме выбывших в текущем финансовом году)</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromShares"
+                       name="IncomeFromShares"
+                       [(ngModel)]="model.IncomeFromShares">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromSecurities" class="col-sm-6 control-label">Доходы от переоценки ценных бумаг по справедливой стоимости (кроме выбывших в текущем финансовом году)</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromSecurities"
+                       name="IncomeFromSecurities"
+                       [(ngModel)]="model.IncomeFromSecurities">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromDerivatives" class="col-sm-6 control-label">Доходы от переоценки производных финансовых инструментов по справедливой  стоимости (кроме выбывших в текущем финансовом году)</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromDerivatives"
+                       name="IncomeFromDerivatives"
+                       [(ngModel)]="model.IncomeFromDerivatives">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromSubsidiary" class="col-sm-6 control-label">Доходы в виде сумм прибыли дочерних (ассоциированных) организаций (за исключением дивидендов), признанных в финансовой отчетности КИК</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromSubsidiary"
+                       name="IncomeFromSubsidiary"
+                       [(ngModel)]="model.IncomeFromSubsidiary">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromReserveRestore" class="col-sm-6 control-label">Доходы от восстановления резервов</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromReserveRestore"
+                       name="IncomeFromReserveRestore"
+                       [(ngModel)]="model.IncomeFromReserveRestore">
+            </div>
+        </div>
+        <legend>Расходы</legend>
+        <div class="form-group">
+            <label for="CostsKIKNotIncluded" class="col-sm-6 control-label">Расходы, не учитываемые при определении прибыли (убытка) КИК (всего), в том числе:</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="CostsKIKNotIncluded"
+                       name="CostsKIKNotIncluded"
+                       [(ngModel)]="model.CostsKIKNotIncluded">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CostsFromRegisteredCapitals" class="col-sm-6 control-label">Расходы от переоценки долей в уставном (складочном) капитале (фонде) организации по справедливой стоимости </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="CostsFromRegisteredCapitals"
+                       name="CostsFromRegisteredCapitals"
+                       [(ngModel)]="model.CostsFromRegisteredCapitals">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CostsFromShares" class="col-sm-6 control-label">Расходы от переоценки паев в паевых фондах кооперативов и паевых инвестиционных фондах по справедливой стоимости </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="CostsFromShares"
+                       name="CostsFromShares"
+                       [(ngModel)]="model.CostsFromShares">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CostsFromSecurities" class="col-sm-6 control-label">Расходы от переоценки ценных бумаг по справедливой стоимости </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="CostsFromSecurities"
+                       name="CostsFromSecurities"
+                       [(ngModel)]="model.CostsFromSecurities">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CostsFromDerivatives" class="col-sm-6 control-label">Расходы от переоценки производных финансовых инструментов по справедливой  стоимости  </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="CostsFromDerivatives"
+                       name="CostsFromDerivatives"
+                       [(ngModel)]="model.CostsFromDerivatives">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CostsFromSubsidiary" class="col-sm-6 control-label">Расходы в виде сумм убытка дочерних (ассоциированных) организаций, признанных в финансовой отчетности КИК </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="CostsFromSubsidiary"
+                       name="CostsFromSubsidiary"
+                       [(ngModel)]="model.CostsFromSubsidiary">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CostsFromReserveRestore" class="col-sm-6 control-label">Расходы на формирование резервов</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="CostsFromReserveRestore"
+                       name="CostsFromReserveRestore"
+                       [(ngModel)]="model.CostsFromReserveRestore">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeAndCostsTotalAmount" class="col-sm-6 control-label">Общая сумма доходов и расходов,  не учитываемых при определении прибыли (убытка)</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="IncomeAndCostsTotalAmount"
+                       name="IncomeAndCostsTotalAmount"
+                       [(ngModel)]="model.IncomeAndCostsTotalAmount">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ProfitTotalAmountCorrection" class="col-sm-6 control-label">Общая сумма корректировки прибыли (убытка) КИК</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="ProfitTotalAmountCorrection"
+                       name="ProfitTotalAmountCorrection"
+                       [(ngModel)]="model.ProfitTotalAmountCorrection">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ReassessmentTotalAmount" class="col-sm-6 control-label">Переоценка долей в уставном (складочном) капитале (фонде),  паев в паевых фондах кооперативов и паевых инвестиционных фондах, ценных бумаг и производных финансовых инструментов, реализованных КИК, в том числе:</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="ReassessmentTotalAmount"
+                       name="ReassessmentTotalAmount"
+                       [(ngModel)]="model.ReassessmentTotalAmount">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ReassessmentFromRegisteredCapitals" class="col-sm-6 control-label">Переоценка  долей в уставном (складочном) капитале (фонде) организаций, в том числе сумма убытка от их обесценения</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ReassessmentFromRegisteredCapitals"
+                       name="ReassessmentFromRegisteredCapitals"
+                       [(ngModel)]="model.ReassessmentFromRegisteredCapitals">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ReassessmentFromShares" class="col-sm-6 control-label">Переоценка паев в паевых фондах кооперативов и паевых инвестиционных фондах,  в том числе сумма убытка от их обесценения</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ReassessmentFromShares"
+                       name="ReassessmentFromShares"
+                       [(ngModel)]="model.ReassessmentFromShares">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ReassessmentFromSecurities" class="col-sm-6 control-label">Переоценка ценных бумаг, в том числе сумма убытка от их обесценения</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ReassessmentFromSecurities"
+                       name="ReassessmentFromSecurities"
+                       [(ngModel)]="model.ReassessmentFromSecurities">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ReassessmentFromDerivatives" class="col-sm-6 control-label">Переоценка производных финансовых инструментов, в том числе сумма убытка от их обесценения</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ReassessmentFromDerivatives"
+                       name="ReassessmentFromDerivatives"
+                       [(ngModel)]="model.ReassessmentFromDerivatives">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeSymmetricCorrection" class="col-sm-6 control-label">Симметричная корректировка доходов КИК по результатам проверки соответствия цены контролируемой сделки КИК с взаимозависимым лицом рыночному уровню </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeSymmetricCorrection"
+                       name="IncomeSymmetricCorrection"
+                       [(ngModel)]="model.IncomeSymmetricCorrection">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeNotIncludedInProfit" class="col-sm-6 control-label">Доходы, исключаемые из прибыли (убытка) КИК, полученные КИК от реализации в пользу "Компании" (либо его российских взаимозависимых лиц) ценных бумаг и (или) имущественных прав (в том числе долей, паев)</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeNotIncludedInProfit"
+                       name="IncomeNotIncludedInProfit"
+                       [(ngModel)]="model.IncomeNotIncludedInProfit">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CostsIncludedInProfit" class="col-sm-6 control-label">Расходы, исключаемые из прибыли (убытка) КИК, полученные КИК от реализации в пользу "Компании" (либо его российских взаимозависимых лиц) ценных бумаг и (или) имущественных прав (в том числе долей, паев)</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="CostsIncludedInProfit"
+                       name="CostsIncludedInProfit"
+                       [(ngModel)]="model.CostsIncludedInProfit">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="AdjustedProfitAmount" class="col-sm-6 control-label">Скорректированная величина прибыли (убытка) КИК</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="AdjustedProfitAmount"
+                       name="AdjustedProfitAmount"
+                       [(ngModel)]="model.AdjustedProfitAmount">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ProfitExclusion" class="col-sm-6 control-label">Суммы, исключаемые из прибыли КИК - всего, в том числе:</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="ProfitExclusion"
+                       name="ProfitExclusion"
+                       [(ngModel)]="model.ProfitExclusion">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="DividendsCurrentYear" class="col-sm-6 control-label">Дивиденды, выплаченные КИК из прибыли финансового года, за который составлена финансовая отчетность </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="DividendsCurrentYear"
+                       name="DividendsCurrentYear"
+                       [(ngModel)]="model.DividendsCurrentYear">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="DistributedProfitAmount" class="col-sm-6 control-label">Величина распределенной прибыли </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="DistributedProfitAmount"
+                       name="DistributedProfitAmount"
+                       [(ngModel)]="model.DistributedProfitAmount">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeProperty" class="col-sm-6 control-label">Доходы в виде имущества (включая денежные средства) и (или) имущественных прав, которые получены в качестве взноса (вклада) от:
+ -учредителя (основателя) данной структуры и (или) лиц, являющихся членами его семьи и (или) близкими родственниками,
+- от иной контролируемой иностранной компании (в том числе иностранной структуры без образования юридического лица), в отношении которой хотя бы одно из указанных выше лиц является контролирующим лицом
+ </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeProperty"
+                       name="IncomeProperty"
+                       [(ngModel)]="model.IncomeProperty">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="LossProperty" class="col-sm-6 control-label">Расходы в виде имущества (включая денежные средства) и (или) имущественных прав, переданных иностранной структуре без образования юридического лица или иностранному юридическому лицу, для которого в соответствии с его личным законом не предусмотрено участие в капитале </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="LossProperty"
+                       name="LossProperty"
+                       [(ngModel)]="model.LossProperty">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ProfitAmount" class="col-sm-6 control-label">Величина прибыли (убытка)</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="ProfitAmount"
+                       name="ProfitAmount"
+                       [(ngModel)]="model.ProfitAmount">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="AverageForeignCurrency" class="col-sm-6 control-label">Средний курс иностранной валюты, руб./валюта </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d{1,2})?$"
+                       class="form-control"
+                       required
+                       id="AverageForeignCurrency"
+                       name="AverageForeignCurrency"
+                       [(ngModel)]="model.AverageForeignCurrency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ProfitAmountConvertedCurrency" class="col-sm-6 control-label">Величина прибыли КИК, пересчитанная по среднему курсу, руб.</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="ProfitAmountConvertedCurrency"
+                       name="ProfitAmountConvertedCurrency"
+                       [(ngModel)]="model.ProfitAmountConvertedCurrency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="StandartKKIKProfit" class="col-sm-6 control-label">Норматив прибыли КИК, освобождаемой от налогообложения, руб.</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="StandartKKIKProfit"
+                       name="StandartKKIKProfit"
+                       [(ngModel)]="model.StandartKKIKProfit">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ReceivedDividends" class="col-sm-6 control-label">Сумма полученных доходов в виде дивидендов, источником выплаты которых являются российские организации (если фактическое право на эти доходы имеет контролирующее лицо "Компания") </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ReceivedDividends"
+                       name="ReceivedDividends"
+                       [(ngModel)]="model.ReceivedDividends">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ProfitAmountCurrentYear" class="col-sm-6 control-label">Сумма прибыли финансового года, направленная на увеличение уставного капитала в соответствии с требованиями личного закона КИК </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ProfitAmountCurrentYear"
+                       name="ProfitAmountCurrentYear"
+                       [(ngModel)]="model.ProfitAmountCurrentYear">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ProfitAmountForTax" class="col-sm-6 control-label">Величина прибыли (убытка) для целей налогообложения</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ProfitAmountForTax"
+                       name="ProfitAmountForTax"
+                       disabled="disabled"
+                       [(ngModel)]="model.ProfitAmountForTax">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="LossKIKFromPastYears" class="col-sm-6 control-label">Сумма убытка прошлых лет, уменьшающая прибыль КИК за отчетный финансовый год </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="LossKIKFromPastYears"
+                       name="LossKIKFromPastYears"
+                       disabled="disabled"
+                       [(ngModel)]="model.LossKIKFromPastYears">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CountableProfitAmountForTax" class="col-sm-6 control-label">Величина прибыли, подлежащая к учету</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="CountableProfitAmountForTax"
+                       name="CountableProfitAmountForTax"
+                       disabled="disabled"
+                       [(ngModel)]="model.CountableProfitAmountForTax">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ShareInKIKProfit" class="col-sm-6 control-label">Доля участия "Компания" в прибыли КИК, %</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ShareInKIKProfit"
+                       name="ShareInKIKProfit"
+                       [(ngModel)]="model.ShareInKIKProfit">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="PartKIKProfit" class="col-sm-6 control-label">Доля прибыли КИК, соответствующая доле участия контролирующего лица в КИК, руб.</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="PartKIKProfit"
+                       name="PartKIKProfit"
+                       disabled="disabled"
+                       [(ngModel)]="model.PartKIKProfit">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ControlledProfitAmount" class="col-sm-6 control-label">Величина прибыли, подлежащая учету у иных контролирующих лиц, через которых реализовано косвенное участие, соответствующая доле участия налогоплательщика </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ControlledProfitAmount"
+                       name="ControlledProfitAmount"
+                       [(ngModel)]="model.ControlledProfitAmount">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="KIKTaxBase" class="col-sm-6 control-label">Налоговая база для исчисления налога, руб.</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       disabled="disabled"
+                       id="KIKTaxBase"
+                       name="KIKTaxBase"
+                       [(ngModel)]="model.KIKTaxBase">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-6 col-sm-6">
+                <button type="button" (click)="Calculate()" class="btn btn-default">Расcчитать</button>
+                <button type="button" (click)="Save()" [disabled]="!registerForm.form.valid" class="btn btn-default">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

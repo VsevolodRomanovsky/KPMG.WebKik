@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F0C5A52B-BEE8-4EBA-93A7-D9BC52C43622}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KPMG.WebKik.Models</RootNamespace>
+    <AssemblyName>KPMG.WebKik.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Companies\DomesticCompany.cs" />
+    <Compile Include="Companies\ForeignCompany.cs" />
+    <Compile Include="Companies\ForeginLightCompany.cs" />
+    <Compile Include="Directories\DoubleTaxationAgreementCountryCode.cs" />
+    <Compile Include="Directories\EAECCountryCode.cs" />
+    <Compile Include="Directories\IncomeEntitledPersonCode.cs" />
+    <Compile Include="Directories\RussianLocationCode.cs" />
+    <Compile Include="Directories\ForeignStructurePersonControlCode.cs" />
+    <Compile Include="Directories\CitizenshipCode.cs" />
+    <Compile Include="Directories\IDirectoryEntry.cs" />
+    <Compile Include="Directories\GenderCode.cs" />
+    <Compile Include="Directories\SignatoryCode.cs" />
+    <Compile Include="Directories\NotificationSubmissionGround.cs" />
+    <Compile Include="Directories\CountryCode.cs" />
+    <Compile Include="Directories\ForeignOrganizationalFormCode.cs" />
+    <Compile Include="Directories\ForeignStructuresFoundersCode.cs" />
+    <Compile Include="Directories\DocumentCode.cs" />
+    <Compile Include="Directories\RegionCode.cs" />
+    <Compile Include="Directories\TaxPayerCode.cs" />
+    <Compile Include="DocumentInformation.cs" />
+    <Compile Include="IEntity.cs" />
+    <Compile Include="Companies\IndividualCompany.cs" />
+    <Compile Include="NotificationOfKIK.cs" />
+    <Compile Include="NotificationOfKIK\NotificationOfKikXML.cs" />
+    <Compile Include="NotificationOfParticipation.cs" />
+    <Compile Include="NotificationOfParticipationXML.cs" />
+    <Compile Include="Permission.cs" />
+    <Compile Include="ProjectCompanies\TaxExemption.cs" />
+    <Compile Include="ProjectCompanies\RationalyType.cs" />
+    <Compile Include="Registers\Register11.cs" />
+    <Compile Include="Registers\Register11Data.cs" />
+    <Compile Include="Registers\Register9Data.cs" />
+    <Compile Include="Registers\Register9.cs" />
+    <Compile Include="Registers\Register10.cs" />
+    <Compile Include="Registers\Register10Data.cs" />
+    <Compile Include="Registers\Register8Data.cs" />
+    <Compile Include="Registers\Register8.cs" />
+    <Compile Include="Registers\RegisterListItem.cs" />
+    <Compile Include="ReportCompanies\ChainParticipant.cs" />
+    <Compile Include="ReportCompanies\CompanyChain.cs" />
+    <Compile Include="ReportCompanies\CompanyNumberContainer.cs" />
+    <Compile Include="ReportCompanies\ControlGround.cs" />
+    <Compile Include="ReportCompanies\ReportCompany.cs" />
+    <Compile Include="Signatory.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="ProjectCompanies\GroundsType.cs" />
+    <Compile Include="ProjectCompanies\ProjectCompany.cs" />
+    <Compile Include="ProjectCompanies\ProjectCompanyControl.cs" />
+    <Compile Include="ProjectCompanies\ProjectCompanyFactShare.cs" />
+    <Compile Include="ProjectCompanies\ProjectCompanyShare.cs" />
+    <Compile Include="ProjectCompanies\ShareType.cs" />
+    <Compile Include="ProjectCompanies\State.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registers\IRegister.cs" />
+    <Compile Include="Registers\Register6.cs" />
+    <Compile Include="Registers\Register7.cs" />
+    <Compile Include="Registers\Register5.cs" />
+    <Compile Include="Registers\Register4.cs" />
+    <Compile Include="Registers\Register1.cs" />
+    <Compile Include="Registers\Register2.cs" />
+    <Compile Include="Registers\Register3.cs" />
+    <Compile Include="Registers\RegisterType.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="TaxExemptionResult.cs" />
+    <Compile Include="SupportingDocuments.cs" />
+    <Compile Include="TaxReturn.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="Year.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KPMG.Webkik.Utils\KPMG.Webkik.Utils.csproj">
+      <Project>{2A394526-2544-49D0-800F-5CA4B314A754}</Project>
+      <Name>KPMG.Webkik.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

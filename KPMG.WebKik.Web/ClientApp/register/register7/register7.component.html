@@ -1,0 +1,72 @@
+﻿<div class="container" *ngIf="model">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>Расчет доли доходов от участия в СРП в общей сумме доходов КИК  </h3>
+        </div>
+    </div>
+    <form #register7Form="ngForm" class="form-horizontal">
+        <company-in-register [company-id]="shareId"></company-in-register>
+        <div class="form-group">
+            <label for="Currency" class="col-sm-6 control-label">Валюта</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       class="form-control"
+                       required
+                       id="Currency"
+                       name="Currency"
+                       [(ngModel)]="model.Currency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="KikTotalSumIncome" class="col-sm-6 control-label">Общая сумма доходов КИК</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="KikTotalSumIncome"
+                       name="KikTotalSumIncome"
+                       [(ngModel)]="model.KikTotalSumIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="SumIncomeSRP" class="col-sm-6 control-label">Сумма доходов от участия в СРП</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="SumIncomeSRP"
+                       name="SumIncomeSRP"
+                       [(ngModel)]="model.SumIncomeSRP">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="PartPercentSRPIncome" class="col-sm-6 control-label">Доля доходов от участия в СРП в общей сумме доходов, %</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="PartPercentSRPIncome"
+                       name="PartPercentSRPIncome"
+                       [(ngModel)]="model.PartPercentSRPIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-6">
+                <small>
+                    * Под СРП понимаются заключаемые с государством (территорией) или с уполномоченными правительством такого государства (территории) организациями соглашения о разделе продукции, концессионные соглашения, лицензионные соглашения или сервисные соглашения (контракты), аналогичные соглашениям о разделе продукции, либо иные аналогичные соглашения, заключаемые на условиях распределения риска.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-6 col-sm-6">
+                <button type="button" (click)="Calculate()" class="btn btn-default">Расcчитать</button>
+                <button type="button" (click)="Save()" [disabled]="!register7Form.form.valid" class="btn btn-default">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

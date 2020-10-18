@@ -1,0 +1,259 @@
+﻿<div class="container" *ngIf="model">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>Убытки КИК по данным финансовой отчетности за прошлые периоды, учитываемые при формировании налоговой базы по КИК за отчетный финансовый год</h3>
+        </div>
+    </div>
+    <form #registerForm="ngForm" class="form-horizontal">
+        <company-in-register [company-id]="shareId"></company-in-register>
+        <div class="form-group">
+            <label for="Currency" class="col-sm-6 control-label">Валюта</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       class="form-control"
+                       required
+                       id="Currency"
+                       name="Currency"
+                       [(ngModel)]="model.Currency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="BalanceLoss" class="col-sm-6 control-label">Остаток  неперенесённого убытка на начало отчетного финансового года, в том числе:</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="BalanceLoss"
+                       name="BalanceLoss"
+                       [(ngModel)]="model.BalanceLoss">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="BalanceLoss2012" class="col-sm-6 control-label">убыток за 2012 год</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="BalanceLoss2012"
+                       name="BalanceLoss2012"
+                       [(ngModel)]="model.BalanceLoss2012">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="BalanceLoss2013" class="col-sm-6 control-label">убыток за 2013 год</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="BalanceLoss2013"
+                       name="BalanceLoss2013"
+                       [(ngModel)]="model.BalanceLoss2013">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="BalanceLoss2014" class="col-sm-6 control-label">убыток за 2014 год</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="BalanceLoss2014"
+                       name="BalanceLoss2014"
+                       [(ngModel)]="model.BalanceLoss2014">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="BalanceLoss00" class="col-sm-6 control-label">убыток за ____________ год</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="BalanceLoss00"
+                       name="BalanceLoss00"
+                       [(ngModel)]="model.BalanceLoss00">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="BalanceLoss01" class="col-sm-6 control-label">убыток за ____________ год</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="BalanceLoss01"
+                       name="BalanceLoss01"
+                       [(ngModel)]="model.BalanceLoss01">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="TaxBaseForTaxPeriod" class="col-sm-6 control-label">Налоговая база за налоговый период</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="TaxBaseForTaxPeriod"
+                       name="TaxBaseForTaxPeriod"
+                       [(ngModel)]="model.TaxBaseForTaxPeriod">
+            </div>
+        </div>
+        <div *ngIf="model.TaxBaseForTaxPeriod && model.TaxBaseForTaxPeriod > 0">
+            <div class="form-group">
+                <label for="LossSumTaxBase" class="col-sm-6 control-label">Сумма убытка или части убытка, уменьшающего налоговую базу КИК за отчетный финансовый год, в том числе:</label>
+                <div class="col-sm-6">
+                    <input type="text"
+                           pattern="^[+]?\d+([.]\d+)?$"
+                           class="form-control"
+                           disabled="disabled"
+                           id="LossSumTaxBase"
+                           name="LossSumTaxBase"
+                           [(ngModel)]="model.LossSumTaxBase">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="SumLoss2012" class="col-sm-6 control-label">убыток за 2012 год </label>
+                <div class="col-sm-6">
+                    <input type="text"
+                           pattern="^[+]?\d+([.]\d+)?$"
+                           class="form-control"
+                           required
+                           id="SumLoss2012"
+                           name="SumLoss2012"
+                           [(ngModel)]="model.SumLoss2012">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="SumLoss2013" class="col-sm-6 control-label">убыток за 2013 год</label>
+                <div class="col-sm-6">
+                    <input type="text"
+                           pattern="^[+]?\d+([.]\d+)?$"
+                           class="form-control"
+                           required
+                           id="SumLoss2013"
+                           name="SumLoss2013"
+                           [(ngModel)]="model.SumLoss2013">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="SumLoss2014" class="col-sm-6 control-label">убыток за 2014 год </label>
+                <div class="col-sm-6">
+                    <input type="text"
+                           pattern="^[+]?\d+([.]\d+)?$"
+                           class="form-control"
+                           required
+                           id="SumLoss2014"
+                           name="SumLoss2014"
+                           [(ngModel)]="model.SumLoss2014">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="SumLoss00" class="col-sm-6 control-label">убыток за _____________ год </label>
+                <div class="col-sm-6">
+                    <input type="text"
+                           pattern="^[+]?\d+([.]\d+)?$"
+                           class="form-control"
+                           required
+                           id="SumLoss00"
+                           name="SumLoss00"
+                           [(ngModel)]="model.SumLoss00">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="SumLoss01" class="col-sm-6 control-label">убыток за _____________ год  </label>
+                <div class="col-sm-6">
+                    <input type="text"
+                           pattern="^[+]?\d+([.]\d+)?$"
+                           class="form-control"
+                           required
+                           id="SumLoss01"
+                           name="SumLoss01"
+                           [(ngModel)]="model.SumLoss01">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="FullBalanceLoss" class="col-sm-6 control-label">Всего остаток неперенесённого убытка на конец отчетного финансового года, в том числе:</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="FullBalanceLoss"
+                       name="FullBalanceLoss"
+                       [(ngModel)]="model.FullBalanceLoss">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="FullBalanceLoss2012" class="col-sm-6 control-label">убыток за 2012 год</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="FullBalanceLoss2012"
+                       name="FullBalanceLoss2012"
+                       [(ngModel)]="model.FullBalanceLoss2012">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="FullBalanceLoss2013" class="col-sm-6 control-label">убыток за 2013 год</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="FullBalanceLoss2013"
+                       name="FullBalanceLoss2013"
+                       [(ngModel)]="model.FullBalanceLoss2013">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="FullBalanceLoss2014" class="col-sm-6 control-label">убыток за 2014 год</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="FullBalanceLoss2014"
+                       name="FullBalanceLoss2014"
+                       [(ngModel)]="model.FullBalanceLoss2014">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="FullBalanceLoss00" class="col-sm-6 control-label">убыток за _____________ год</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="FullBalanceLoss00"
+                       name="FullBalanceLoss00"
+                       [(ngModel)]="model.FullBalanceLoss00">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="FullBalanceLoss01" class="col-sm-6 control-label">убыток за _____________ год</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="FullBalanceLoss01"
+                       name="FullBalanceLoss01"
+                       [(ngModel)]="model.FullBalanceLoss01">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-6 col-sm-6">
+                <button type="button" (click)="Calculate()" class="btn btn-default">Расcчитать</button>
+                <button type="button" (click)="Save()" [disabled]="!registerForm.form.valid" class="btn btn-default">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+<preloader *ngIf="isLoading"></preloader>

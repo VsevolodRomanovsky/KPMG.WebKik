@@ -1,0 +1,68 @@
+﻿<div class="container" *ngIf="model">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>Расчет освобождений по критерию эмитента обращающихся облигаций  </h3>
+        </div>
+    </div>
+    <form #registerForm="ngForm" class="form-horizontal">
+        <company-in-register [company-id]="shareId"></company-in-register>
+        <div class="form-group">
+            <label for="currency" class="col-sm-6 control-label">Валюта</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       class="form-control"
+                       required
+                       id="currency"
+                       name="currency"
+                        [(ngModel)]="model.Currency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="sumProfit" class="col-sm-6 control-label">Общая сумма доходов (расходов - с 01.01.2017) КИК</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="sumProfit"
+                       name="sumProfit"
+                       [(ngModel)]="model.SumProfit">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="sumPercentForBondsProfit" class="col-sm-6 control-label">Сумма процентного дохода (расхода - с 01.01.2017) по обращающимся облигациям</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="sumPercentForBondsProfit"
+                       name="sumPercentForBondsProfit"
+                       [(ngModel)]="model.SumPercentForBondsProfit">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="PartPercentForBondsProfit" class="col-sm-6 control-label">Доля процентных доходов (расходов - с 01.01.2017 года) по обращающимся облигациям в общей сумме расходов, %</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="PartPercentForBondsProfit"
+                       name="PartPercentForBondsProfit"
+                       [(ngModel)]="model.PartPercentForBondsProfit">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-sm-offset-6 col-sm-6">
+                <button type="button" (click)="Calculate()" class="btn btn-default">Расcчитать</button>
+                <button type="button" (click)="Save()" [disabled]="!registerForm.form.valid" class="btn btn-default">Сохранить</button>
+            </div>
+        </div>
+
+       
+    </form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

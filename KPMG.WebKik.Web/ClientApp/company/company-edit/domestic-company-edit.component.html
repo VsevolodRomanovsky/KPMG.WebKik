@@ -1,0 +1,188 @@
+﻿
+<div *ngIf="model" class="container">
+    <br>
+    <div class="row">
+            <div class="col-sm-12">
+                <nav class="breadcrumb">
+                    <project-in-company [project-id]="projectId"></project-in-company> 
+                    <span> > </span>
+                    <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies']">Компании</a>
+                    <span> > </span>
+                    <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId]">{{model.Name}}</a>
+                </nav>
+            </div>
+        <div class="center-block text-center">
+            <h3>Редактирование компании</h3>
+        </div>
+    </div>
+    <br>
+    <form #editForm="ngForm" (ngSubmit)="onSubmit()" novalidate class="form-horizontal">
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Название компании</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Название компании"
+                       required
+                       id="name"
+                       name="name"
+                       [(ngModel)]="model.Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Резидент РФ</label>
+            <div class="col-sm-5">
+                <div class="col-sm-2">
+                    <input type="checkbox"
+                           class="checkbox-inline"
+                           placeholder="Резидент РФ"
+                           id="isResident"
+                           name="isResident"
+                           [(ngModel)]="model.IsResident">
+                </div>
+            </div>
+        </div>
+        <!--<div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Номер российской компании</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Номер российской компании"
+                       required
+                       id="number"
+                       name="number"
+                       [(ngModel)]="model.DomesticCompany.Number">
+            </div>
+        </div>-->
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Полное наименование</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Полное наименование"
+                       required
+                       id="fullName"
+                       name="fullName"
+                       [(ngModel)]="model.DomesticCompany.FullName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">ОГРН</label>
+            <div class="col-sm-5">
+                <input type="number"
+                       class="form-control"
+                       placeholder="ОГРН"
+                       required
+                       id="orgn"
+                       name="orgn"
+                       [(ngModel)]="model.DomesticCompany.OGRN">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">ИНН</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="ИНН"
+                       required
+                       pattern="[0-9]{0,10}"
+                       id="inn"
+                       name="inn"
+                       [(ngModel)]="model.DomesticCompany.INN">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">КПП</label>
+            <div class="col-sm-5">
+                <input type="text" maxlength="9"
+                       class="form-control"
+                       placeholder="КПП"
+                       required
+                       id="kpp"
+                       name="kpp"
+                       [(ngModel)]="model.DomesticCompany.KPP">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Публичная компания</label>
+            <div class="col-sm-5">
+                <input type="checkbox"
+                       class="checkbox-inline"
+                       id="isPublic"
+                       name="isPublic"
+                       [(ngModel)]="model.DomesticCompany.IsPublic">
+            </div>
+			</div>
+		<div class="form-group">
+			<label for="name" class="col-sm-4 control-label">Подтверждающие документы</label>
+			<div class="col-sm-5">
+				<input type="checkbox" [required]="null"
+					   class="checkbox-inline"
+					   id="isDocAttached"
+					   name="isDocAttached"
+					   [(ngModel)]="isDocAttached">
+			</div>
+		</div>
+		<div [hidden]="!isDocAttached">
+			<div class="form-group">
+				<label for="fileYear" class="col-sm-4 control-label">Отчетный год </label>
+				<div class="col-sm-5">
+					<input type="text" maxlength="9" [required]="null"
+						   class="form-control"
+						   required
+						   id="fileYear"
+						   name="fileYear"
+						   [(ngModel)]="fileYear">
+					</div>
+				</div>
+			<div class="form-group">
+				<label for="isUU" class="col-sm-4 control-label"> Уведомления об участии </label>
+				<input type="checkbox" [required]="null"
+					   class="checkbox-inline"
+					   id="isUU"
+					   name="isUU"
+					   [(ngModel)]="isUU">
+			</div>
+			<div class="form-group">
+				<label for="isUKIK" class="col-sm-4 control-label"> Уведомления о КИКах</label>
+				<input type="checkbox" [required]="null"
+					   class="checkbox-inline"
+					   id="isUKIK"
+					   name="isUKIK"
+					   [(ngModel)]="isUKIK">
+			</div>
+			<div class="form-group" [hidden]="!isUKIK">
+				<label for="isUKIK" class="col-sm-4 control-label"> Тип документа уведомления о КИКахх</label>
+				<div class="col-sm-5">
+					<select class="form-control" id="UKIKDocType" [required]="null"
+					   name="UKIKDocType" [(ngModel)]="UKIKDocType">
+						<option>ПД для освобождения КИК</option>
+						<option>Прочие ПД</option>
+					</select>
+					</div>
+				</div>
+			<div class="form-group">
+				<label for="isND" class="col-sm-4 control-label">  Налоговые декларации</label>
+				<input type="checkbox" [required]="null"
+					   class="checkbox-inline"
+					   id="isND"
+					   name="isND"
+					   [(ngModel)]="isND">
+			</div>
+			<div class="form-group">
+				<label for="fileYear" class="col-sm-4 control-label"> Прикрепить документ</label>
+				<div class="col-sm-5">
+					<input type="file" (change)="uploadFile($event)"  id="fileAttached" [required]="null"
+					   name="fileAttached">
+					</div>
+				</div>
+		</div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-5">
+                <button type="submit" [disabled]="!editForm.form.valid" class="btn btn-default">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

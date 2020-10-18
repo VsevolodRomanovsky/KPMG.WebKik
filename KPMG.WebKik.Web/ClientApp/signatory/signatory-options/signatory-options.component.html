@@ -1,0 +1,6 @@
+﻿<option></option>
+<option *ngFor="let signatory of signatoryList"
+        [attr.selected]="signatory.Id == selectedId ? true : null"
+        [value]="signatory.Id">
+    {{signatory.Fio}}
+</option>

@@ -1,0 +1,66 @@
+﻿<div class="container" *ngIf="model">
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+                <nav class="breadcrumb">
+                    <project-in-company [project-id]="projectId"></project-in-company>
+                    <span> > </span>
+                    <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies']">Компании</a>
+                    <span> > </span>
+                    <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId]">{{model.OwnerProjectCompany.Name}}</a>
+                    <span> > </span>
+                    <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/share']">Владения</a>
+                </nav>
+        </div>
+        <div class="col-sm-8 col-sm-offset-4">
+            <h3 class="media-heading">Добавление сведения об участии</h3>
+        </div>
+    </div>
+    <br>
+            <form #createForm="ngForm" class="form-horizontal" (ngSubmit)="onSubmit(selectedCompany)">
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Зависимая компания</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" [(ngModel)]="model.DependentProjectCompany.Id" #selectedCompany name="dependentProjectCompany" id="dependentProjectCompany" required>
+                            <option *ngFor="let company of companyList" [value]="company.Id">{{company.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Статус</label>
+                    <div class="col-sm-5">
+                        <input type="text" disabled
+                               class="form-control"
+                               required
+                               id="state"
+                               name="state"
+                               [(ngModel)]="model.OwnerProjectCompany.StateName">
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" [disabled]="!createForm.form.valid" class="btn btn-default">Сохранить</button>
+                        <button type="submit" class="btn btn-default" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/share']">Закрыть</button>
+                    </div>
+                </div>
+            </form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

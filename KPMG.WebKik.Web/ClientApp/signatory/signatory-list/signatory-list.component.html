@@ -1,0 +1,63 @@
+﻿<div *ngIf="signatoryList" class="container">
+    <p>&nbsp;</p>
+    <div class="row">
+        <div class="col-sm-12">
+            <nav class="breadcrumb">
+                <project-in-company [project-id]="projectId"></project-in-company>
+                <span> > </span>
+                <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies']">Компании</a>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId]">Информация</a>
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/share']">Владения</a>
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/kiklist']">КИКи</a>
+                <a class="list-group-item active">Подписанты</a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div>
+                <div class="">
+                    <h3 class="media-heading">
+                        Подписанты
+                        <button type="button" class="btn btn-default" [routerLink]="['0']">
+                            <span class="glyphicon glyphicon-plus"></span> Добавить
+                        </button>
+                    </h3>
+                </div>               
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-condensed table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="">№</th>
+                                    <th class="">Имя</th>
+                                    <th class="">Тип</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let signatory of signatoryList; let signatoryIndex = index"
+                                    [routerLink]="[signatory.Id]"
+                                    class="kik-clickable">
+                                    <td>
+                                        {{signatoryIndex + 1}}
+                                    </td>
+                                    <td>
+                                        {{signatory.LastName}} {{signatory.FirstName}} {{signatory.MiddleName}}
+                                    </td>
+                                    <td>
+                                        {{signatory.SignatoryName}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

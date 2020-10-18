@@ -1,0 +1,133 @@
+﻿
+<div *ngIf="model" class="container">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>Дополнительная информация о компании</h3>
+        </div>
+    </div>
+    <form #createForm="ngForm" (ngSubmit)="onSubmit()" novalidate class="form-horizontal">
+        <!--<div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Номер иностранной структуры</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Номер иностранной структуры"
+                       required
+                       id="number"
+                       name="number"
+                       [(ngModel)]="model.ForeignLightCompany.Number">
+            </div>
+        </div>-->
+        <div class="form-group">
+            <label for="organisationalFormCode" class="col-sm-4 control-label">Организационная форма</label>
+            <div class="col-sm-5">
+                <select class="form-control" 
+                        [(ngModel)]="model.ForeignLightCompany.ForeignOrganizationalFormCodeId"
+                        directory-options="ForeignOrganizationalFormCode"
+                         id="formCode" name="formCode" required>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Полное наименование в русской транскрипции</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Полное наименование в русской транскрипции"
+                       required
+                       id="RussianName"
+                       name="RussianName"
+                       [(ngModel)]="model.ForeignLightCompany.RussianName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Полное наименование в латинской транскрипции</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Полное наименование в латинской транскрипции"
+                       required
+                       id="EnglishName"
+                       name="EnglishName"
+                       [(ngModel)]="model.ForeignLightCompany.EnglishName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Дата учреждения</label>
+            <div class="col-sm-5">
+                <input type="date"
+                       class="form-control"
+                       placeholder="Дата учреждения"
+                       required
+                       id="FoundDate"
+                       name="FoundDate"
+                       [(ngModel)]="model.ForeignLightCompany.FoundDate">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Наименование и реквизиты документа об учреждении в латинской транскрипции</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Наименование и реквизиты документа об учреждении в латинской транскрипции"
+                       required
+                       id="RequisitesEng"
+                       name="RequisitesEng"
+                       [(ngModel)]="model.ForeignLightCompany.RequisitesEng">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Наименование и реквизиты документа об учреждении в русской транскрипции</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Наименование и реквизиты документа об учреждении в русской транскрипции"
+                       required
+                       id="RequisitesRus"
+                       name="RequisitesRus"
+                       [(ngModel)]="model.ForeignLightCompany.RequisitesRus">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="role" class="col-sm-4 control-label">Cтрана, в которой учреждена иностранная компания</label>
+            <div class="col-sm-5">
+                <select class="form-control" 
+                        [(ngModel)]="model.ForeignLightCompany.CountryCodeId" 
+                        directory-options="CountryCode"
+                        id="code" name="code" required>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Регистрационный номер иностранной структуры в стране учреждения</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Регистрационный номер иностранной структуры в стране учреждения"
+                       required
+                       id="RegNumber"
+                       name="RegNumber"
+                       [(ngModel)]="model.ForeignLightCompany.RegNumber">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Иные сведения, характеризующие иностранную структуру</label>
+            <div class="col-sm-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Иные сведения, характеризующие иностранную структуру"
+                       required
+                       id="OtherInfo"
+                       name="OtherInfo"
+                       [(ngModel)]="model.ForeignLightCompany.OtherInfo">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-5">
+                <button type="submit" [disabled]="!createForm.form.valid" class="btn btn-default">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

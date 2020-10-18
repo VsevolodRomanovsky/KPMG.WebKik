@@ -1,0 +1,409 @@
+﻿<div *ngIf="model" class="container">
+    <div class="row">
+        <nav class="breadcrumb">
+            <project-in-company [project-id]="projectId"></project-in-company>
+            <span> > </span>
+            <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies']">Компании</a>
+            <span> > </span>
+            <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId]">{{model.Name}}</a>
+        </nav>
+        <div class="center-block text-center">
+            <h3>Дополнительная информация о компании</h3>
+        </div>
+    </div>
+    <form #createForm="ngForm" (ngSubmit)="onSubmit()" novalidate class="form-horizontal">
+        <ul class="nav nav-tabs nav-justified">
+            <li class="active"><a data-toggle="tab" href="#home">Общие сведения</a></li>
+            <li><a data-toggle="tab" href="#menu1">Сведения о документе, удостоверяющем личность </a></li>
+            <li><a data-toggle="tab" href="#menu2">Сведения о документе, подтверждающем регистрацию</a></li>
+            <li><a data-toggle="tab" href="#menu3">Адрес места жительства (пребывания) на территории РФ</a></li>
+            <li><a data-toggle="tab" href="#menu4">Адрес места жительства иностранного лица</a></li>
+			<li><a data-toggle="tab" href="#menu5">Подтверждающие документы</a></li>
+        </ul>
+        <br>
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">ИНН</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="ИНН"
+                               required
+                               pattern="[0-9]{0,10}"
+                               id="INN"
+                               name="INN"
+                               [(ngModel)]="model.IndividualCompany.INN">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Фамилия</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Фамилия"
+                               required
+                               id="Surname"
+                               name="Surname"
+                               [(ngModel)]="model.IndividualCompany.Surname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Имя</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Имя"
+                               required
+                               id="Name"
+                               name="Name"
+                               [(ngModel)]="model.IndividualCompany.Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Отчество</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Отчество"
+                               required
+                               id="MiddleName"
+                               name="MiddleName"
+                               [(ngModel)]="model.IndividualCompany.MiddleName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Дата рождения</label>
+                    <div class="col-sm-5">
+                        <input type="date"
+                               class="form-control"
+                               placeholder="Дата рождения"
+                               required
+                               id="BirthDate"
+                               name="BirthDate"
+                               [(ngModel)]="model.IndividualCompany.BirthDate" useValueAsDate>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="genderCode" class="col-sm-4 control-label">Пол</label>
+                    <div class="col-sm-5">
+                        <select class="form-control"
+                                directory-options="GenderCode"
+                                [(ngModel)]="model.IndividualCompany.GenderCodeId" id="genderCode" name="genderCode"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Место рождения</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Место рождения"
+                               id="BirthPlace"
+                               name="BirthPlace"
+                               [(ngModel)]="model.IndividualCompany.BirthPlace">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Гражданство</label>
+                    <div class="col-sm-5">
+                        <select class="form-control"
+                                [(ngModel)]="model.IndividualCompany.CitizenshipCodeId"
+                                directory-options="CitizenshipCode"
+                                id="citizenshipCode" name="citizenshipCode" required></select>
+                    </div>
+                </div>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <div class="form-group">
+                    <label for="verifedDocumentCode" class="col-sm-4 control-label">Вид документа</label>
+                    <div class="col-sm-5">
+                        <select class="form-control"
+                                directory-options="DocumentCode"
+                                [(ngModel)]="model.IndividualCompany.VerifedPersonalityDocInfo.DocumentCodeId" id="verifedDocumentCode" name="verifedDocumentCode" required></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="verifedSerialNumber" class="col-sm-4 control-label">Серия и номер</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Серия и номер"
+                               required
+                               id="verifedSerialNumber"
+                               name="verifedSerialNumber"
+                               [(ngModel)]="model.IndividualCompany.VerifedPersonalityDocInfo.SeriesAndNumber">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="verifedIssuesDate" class="col-sm-4 control-label">Дата выдачи</label>
+                    <div class="col-sm-5">
+                        <input type="date"
+                               class="form-control"
+                               placeholder="Дата выдачи"
+                               required
+                               id="verifedIssuesDate"
+                               name="verifedIssuesDate"
+                               [(ngModel)]="model.IndividualCompany.VerifedPersonalityDocInfo.IssueDate" useValueAsDate>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="verifedIssuePlace" class="col-sm-4 control-label">Кем выдан</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Кем выдан"
+                               required
+                               id="verifedIssuePlace"
+                               name="verifedIssuePlace"
+                               [(ngModel)]="model.IndividualCompany.VerifedPersonalityDocInfo.IssuePlace">
+                    </div>
+                </div>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <div class="form-group">
+                    <label for="confirmedDocumentCode" class="col-sm-4 control-label">Вид документа</label>
+                    <div class="col-sm-5">
+                        <select class="form-control"
+                                directory-options="DocumentCode"
+                                [(ngModel)]="model.IndividualCompany.ConfirmedPersonalityDocInfo.DocumentCodeId" id="confirmedDocumentCode" name="confirmedDocumentCode" required></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmedSerialNumber" class="col-sm-4 control-label">Серия и номер</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Серия и номер"
+                               required
+                               id="confirmedSerialNumber"
+                               name="confirmedSerialNumber"
+                               [(ngModel)]="model.IndividualCompany.ConfirmedPersonalityDocInfo.SeriesAndNumber">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmedIssueDate" class="col-sm-4 control-label">Дата выдачи</label>
+                    <div class="col-sm-5">
+                        <input type="date"
+                               class="form-control"
+                               placeholder="Дата выдачи"
+                               required
+                               id="confirmedIssueDate"
+                               name="confirmedIssueDate"
+                               [(ngModel)]="model.IndividualCompany.ConfirmedPersonalityDocInfo.IssueDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmedIssueDocIssuePlace" class="col-sm-4 control-label">Кем выдан</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Кем выдан"
+                               required
+                               id="confirmedIssueDocIssuePlace"
+                               name="confirmedIssueDocIssuePlace"
+                               [(ngModel)]="model.IndividualCompany.ConfirmedPersonalityDocInfo.IssuePlace">
+                    </div>
+                </div>
+            </div>
+            <div id="menu3" class="tab-pane fade">
+                <div class="form-group">
+                    <label for="russianLocationCode" class="col-sm-4 control-label">Код адреса</label>
+                    <div class="col-sm-5">
+                        <select class="form-control"
+                                directory-options="RussianLocationCode"
+                                [(ngModel)]="model.IndividualCompany.RussianLocationCodeId" id="russianLocationCode" name="russianLocationCode" required></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="regionCode" class="col-sm-4 control-label">Регион</label>
+                    <div class="col-sm-5">
+                        <select class="form-control"
+                                directory-options="RegionCode"
+                                [(ngModel)]="model.IndividualCompany.RegionCodeId" id="regionCode" name="regionCode" required></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Почтовый индекс</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Почтовый индекс"
+                               id="PostIndex"
+                               name="PostIndex"
+                               [(ngModel)]="model.IndividualCompany.PostIndex">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Район</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Район"
+                               id="District"
+                               name="District"
+                               [(ngModel)]="model.IndividualCompany.District">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Город</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Город"
+                               id="City"
+                               name="City"
+                               [(ngModel)]="model.IndividualCompany.City">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Населенный пункт </label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Населенный пункт "
+                               id="CityType"
+                               name="CityType"
+                               [(ngModel)]="model.IndividualCompany.CityType">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Улица</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Улица"
+                               id="Street"
+                               name="Street"
+                               [(ngModel)]="model.IndividualCompany.Street">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Номер дома (владения)</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Номер дома (владения)"
+                               id="HouseNumber"
+                               name="HouseNumber"
+                               [(ngModel)]="model.IndividualCompany.HouseNumber">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Номер корпуса (строения)</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Номер корпуса (строения)"
+                               id="BuildingNumber"
+                               name="BuildingNumber"
+                               [(ngModel)]="model.IndividualCompany.BuildingNumber">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Номер квартиры</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Номер квартиры"
+                               id="AppartamentNumber"
+                               name="AppartamentNumber"
+                               [(ngModel)]="model.IndividualCompany.AppartamentNumber">
+                    </div>
+                </div>
+            </div>
+            <div id="menu4" class="tab-pane fade">
+                <div class="form-group">
+                    <label for="countryCode" class="col-sm-4 control-label">Страна</label>
+                    <div class="col-sm-5">
+                        <select class="form-control"
+                                directory-options="CountryCode"
+                                [(ngModel)]="model.IndividualCompany.ForeignCountryCodeId" id="countryCode" name="countryCode"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ForeignAddress" class="col-sm-4 control-label">Адрес</label>
+                    <div class="col-sm-5">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Адрес"
+                               id="ForeignAddress"
+                               name="ForeignAddress"
+                               [(ngModel)]="model.IndividualCompany.ForeignAddress">
+                    </div>
+                </div>
+            </div>
+			<div id="menu5" class="tab-pane fade">
+				<div class="form-group">
+					<label for="name" class="col-sm-4 control-label">Подтверждающие документы</label>
+					<div class="col-sm-5">
+						<input type="checkbox" [required]="null"
+							   class="checkbox-inline"
+							   id="isDocAttached"
+							   name="isDocAttached"
+							   [(ngModel)]="isDocAttached">
+					</div>
+				</div>
+				<div [hidden]="!isDocAttached">
+					<div class="form-group">
+						<label for="fileYear" class="col-sm-4 control-label">Отчетный год </label>
+						<div class="col-sm-5">
+							<input type="text" maxlength="9" [required]="null"
+								   class="form-control"
+								   required
+								   id="fileYear"
+								   name="fileYear"
+								   [(ngModel)]="fileYear">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="isUU" class="col-sm-4 control-label"> Уведомления об участии </label>
+						<input type="checkbox" [required]="null"
+							   class="checkbox-inline"
+							   id="isUU"
+							   name="isUU"
+							   [(ngModel)]="isUU">
+					</div>
+					<div class="form-group">
+						<label for="isUKIK" class="col-sm-4 control-label"> Уведомления о КИКах</label>
+						<input type="checkbox"
+							   class="checkbox-inline" [required]="null"
+							   id="isUKIK"
+							   name="isUKIK"
+							   [(ngModel)]="isUKIK">
+					</div>
+					<div class="form-group" [hidden]="!isUKIK">
+						<label for="isUKIK" class="col-sm-4 control-label"> Тип документа уведомления о КИКахх</label>
+						<div class="col-sm-5">
+							<select class="form-control" id="UKIKDocType" [required]="null"
+									name="UKIKDocType" [(ngModel)]="UKIKDocType">
+								<option>ПД для освобождения КИК</option>
+								<option>Прочие ПД</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="isND" class="col-sm-4 control-label">  Налоговые декларации</label>
+						<input type="checkbox"
+							   class="checkbox-inline" [required]="null"
+							   id="isND"
+							   name="isND"
+							   [(ngModel)]="isND">
+					</div>
+					<div class="form-group">
+						<label for="fileYear" class="col-sm-4 control-label"> Прикрепить документ</label>
+						<div class="col-sm-5">
+							<input type="file" (change)="uploadFile($event)" id="fileAttached" [required]="null"
+								   name="fileAttached">
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <button type="submit" [disabled]="!createForm.form.valid" class="btn btn-default">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+<preloader *ngIf="isLoading"></preloader>

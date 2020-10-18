@@ -1,0 +1,205 @@
+﻿<div class="container" *ngIf="model">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>Расчет накопленной переоценки в отношении ценных бумаг, долей (паев) и производных финансовых инструментов, реализованных КИК (выбывших по иным основаниям) в отчетном финансовом году</h3>
+        </div>
+    </div>
+    <form #register10Form="ngForm" class="form-horizontal">
+        <company-in-register [company-id]="shareId"></company-in-register>
+        <div class="form-group">
+            <label for="Currency" class="col-sm-6 control-label">Валюта</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       class="form-control"
+                       required
+                       id="Currency"
+                       name="Currency"
+                       [(ngModel)]="model.Currency">
+            </div>
+            <!--<label for="Year" class="col-sm-6 control-label">За период</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       class="form-control"
+                       required
+                       id="Year"
+                       name="Year"
+                       [(ngModel)]="model.Year">
+            </div>-->
+        </div>
+        
+        <table class="table table-bordered table-hover text-center" [hidden]="isNew">
+            <thead>
+                <tr>
+                    <td rowspan="3"></td>
+                    <td rowspan="2">№ п/п</td>
+                    <td rowspan="2">Вид выбывшего актива</td>
+                    <td rowspan="2">Причина выбытия финансового актива</td>
+                    <td colspan="2">Стоимость по данным бухгалтерского учета на дату перехода права собственности (выбытия)</td>
+                    <td colspan="2">Сумма накопленной переоценки**</td>
+                </tr>
+                <tr>
+                    <td>всего</td>
+                    <td>в т.ч. цена приобретения</td>
+                    <td>всего</td>
+                    <td>в т.ч. за отчетный финансовый год</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                </tr>
+            </thead>
+            <ng-container *ngFor='let data1 of sectionList'>
+                <tr>
+                    <td colspan="8" style="background-color: gainsboro;">
+                        {{data1.name}}
+                        <button (click)="addRow(data1.id)" style="float: left" id="{{data1.id}}" class="btn btn-default btn-sm" type="button">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngFor="let data2 of (model.Register10Data | sectionGroup1:data1.id); let dataIndex = index">
+                    <td class="tdButtons">
+                        <button (click)='modalOpen(data2.Id, data1.id)' type="button" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                        <button (click)='delete(data2.Id)' type="button" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    <td>
+                        {{dataIndex + 1}}
+                    </td>
+                    <td>
+                        {{data2.AssetType}}
+                    </td>
+                    <td>
+                        {{data2.CauseDisposal}}
+                    </td>
+                    <td>
+                        {{round(data2.Num1,2)}}
+                    </td>
+                    <td>
+                        {{round(data2.Num2,2)}}
+                    </td>
+                    <td>
+                        {{round(data2.Num3,2)}}
+                    </td>
+                    <td>
+                        {{round(data2.Num4,2)}}
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Итого</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>{{round(calculateGroupTotal1(data1.id),2)}}</td>
+                    <td>{{round(calculateGroupTotal2(data1.id),2)}}</td>
+                    <td>{{round(calculateGroupTotal3(data1.id),2)}}</td>
+                    <td>{{round(calculateGroupTotal4(data1.id),2)}}</td>
+                </tr>
+            </ng-container>
+            <tr>
+                <td></td>
+                <td>Всего</td>
+                <td>X</td>
+                <td>X</td>
+                <td>{{round(calculateGroupTotal1(-1),2)}}</td>
+                <td>{{round(calculateGroupTotal2(-1),2)}}</td>
+                <td>{{round(calculateGroupTotal3(-1),2)}}</td>
+                <td>{{round(calculateGroupTotal4(-1),2)}}</td>
+            </tr>
+        </table>
+        <div class="form-group">
+            <div class="col-sm-offset-6 col-sm-6">
+                <button type="button" (click)="ModalOpen()" class="btn btn-default" [style.display]="isNew? 'none' :'inline'" [hidden]="isNew">Добавить</button>
+                <button type="button" (click)="Calculate()" class="btn btn-default" [style.display]="isNew? 'none' : 'inline'">Расcчитать</button>
+                <button type="button" (click)="save()" [disabled]="!register10Form.form.valid" class="btn btn-default">Сохранить</button>
+                <button type="button" (click)="back()" class="btn btn-default">Вернуться</button>
+            </div>
+        </div>
+        <modal #Register10Modal>
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">{{selectedSection.name}}</h4>
+            </modal-header>
+            <modal-body>
+                <div class="form-group">
+                    <label for="AssetType">Вид выбывшего актива</label>
+                    <div>
+                        <input type="text"
+                               class="form-control"
+                               
+                               id="AssetType"
+                               name="AssetType"
+                               [(ngModel)]="register10DataItem.AssetType">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="CauseDisposal">Причина выбытия финансового актива</label>
+                    <div>
+                        <input type="text"
+                               class="form-control"
+                               
+                               id="CauseDisposal"
+                               name="CauseDisposal"
+                               [(ngModel)]="register10DataItem.CauseDisposal">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Num1">Стоимость по данным бухгалтерского учета на дату перехода права собственности (выбытия). Итого.</label>
+                    <div>
+                        <input type="text"
+                               class="form-control"
+                               
+                               id="Num1"
+                               name="Num1"
+                               [(ngModel)]="register10DataItem.Num1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Num2">Стоимость по данным бухгалтерского учета на дату перехода права собственности (выбытия). В т.ч. цена приобретения</label>
+                    <div>
+                        <input type="text"
+                               class="form-control"
+                               id="Num2"
+                               name="Num2"
+                               [(ngModel)]="register10DataItem.Num2">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Num3">Сумма накопленной переоценки. Всего.</label>
+                    <div>
+                        <input type="text"
+                               class="form-control"
+                               
+                               id="Num3"
+                               name="Num3"
+                               [(ngModel)]="register10DataItem.Num3">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Num4">Сумма накопленной переоценки. В т.ч. за отчетный финансовый год</label>
+                    <div>
+                        <input type="text"
+                               class="form-control"
+                               id="Num4"
+                               name="Num4"
+                               [(ngModel)]="register10DataItem.Num4">
+                    </div>
+                </div>
+            </modal-body>
+            <modal-footer>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalClose()">Отменить</button>
+                <button type="button" class="btn btn-default" (click)="modalSave()">Сохранить</button>
+            </modal-footer>
+        </modal>
+    </form>
+</div>
+<preloader *ngIf="isLoading"></preloader>
+
+

@@ -1,0 +1,281 @@
+﻿<div class="container" *ngIf="model">
+	<div class="row">
+		<div class="center-block text-center">
+			<h3>Cуммы дивидендов, выплаченные КИК, исключаемые из прибыли КИК</h3>
+		</div>
+	</div>
+	<form #register9Form="ngForm" class="form-horizontal">
+		<company-in-register [company-id]="shareId"></company-in-register>
+		<div class="form-group">
+			<label for="Currency" class="col-sm-6 control-label">Валюта</label>
+			<div class="col-sm-6">
+				<input type="text"
+					   class="form-control required"
+					   required
+					   id="Currency"
+					   name="Currency"
+					   [(ngModel)]="model.Currency">
+			</div>
+			<!--<label for="Year" class="col-sm-6 control-label">За период</label>
+			<div class="col-sm-6">
+				<input type="text"
+					   class="form-control"
+					   required
+					   id="Year"
+					   name="Year"
+					   [(ngModel)]="model.Year">
+			</div>-->
+		</div>
+		<table class="table table-bordered table-hover text-center" [hidden]="isNew">
+			<thead>
+				<tr>
+					<th rowspan="4"></th>
+					<th rowspan="3">"№ п/п"</th>
+					<th colspan="2">Информация об акционерах (участниках) КИК</th>
+					<th colspan="3" rowspan="2">Дивиденды выплаченные в отчетном финансовом году из прибыли прошлых лет</th>
+					<th colspan="4">Дивиденды, выплаченные из прибыли финансового года, за который составлена финансовая отчетность</th>
+					<th colspan="2" rowspan="2">Итого сумма выплаченных дивидендов</th>
+				</tr>
+				<tr>
+					<th rowspan="2">наименование акционера (участника), которому выплачиваются дивиденды</th>
+					<th rowspan="2">страна регистрации (инкорпорации)</th>
+					<th colspan="2">промежуточные дивиденды, выплаченные КИК в течение отчетного финансового года</th>
+					<th colspan="2">дивиденды, выплаченные КИК в календарном году, следующем за годом, за который составлена финансовая отчетность из прибыли отчетного финансового года</th>
+				</tr>
+				<tr>
+					<!--<th>1</th>-->
+					<th>финансовый год, за который производится выплата</th>
+					<th>дата выплаты</th>
+					<th>сумма</th>
+					<th>дата выплаты</th>
+					<th>сумма</th>
+					<th>дата выплаты</th>
+					<th>сумма</th>
+					<th>всего</th>
+					<th>в т.ч. из прибыли отчетного финансового года</th>
+				</tr>
+				<tr>
+					<th>1</th>
+					<th>2</th>
+					<th>3</th>
+					<th>4</th>
+					<th>5</th>
+					<th>6</th>
+					<th>7</th>
+					<th>8</th>
+					<th>9</th>
+					<th>10</th>
+					<th>11</th>
+					<th>12</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let data of model.Register9Data; let dataIndex = index">
+					<td>
+						<button (click)='ModalOpen(dataIndex)' type="button" class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-edit"></span>
+						</button>
+						<button (click)='Delete(dataIndex)' type="button" class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</td>
+					<td>
+						{{dataIndex}}
+					</td>
+					<td>
+						{{data.StockholderName}}
+					</td>
+					<td>
+						{{data.CountryCodeId}}
+					</td>
+					<td>
+						{{data.LastYearDividendPaymentYear}}
+					</td>
+					<td>
+						{{data.LastYearDividendPaymentData | date:'shortDate'}}
+					</td>
+					<td>
+						{{data.LastYearDividendSum}}
+					</td>
+					<td>
+						{{data.CurrentYearTransitionalDividendPaymentData | date:'shortDate'}}
+					</td>
+					<td>
+						{{data.CurrentYearTransitionalDividendSum}}
+					</td>
+					<td>
+						{{data.CurrentYearDividendPaymentData | date:'shortDate'}}
+					</td>
+					<td>
+						{{data.CurrentYearDividendSum}}
+					</td>
+					<td>
+						{{data.Summary}}
+					</td>
+					<td>
+						{{data.SummaryYear}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						Итого
+					</td>
+					<td>
+
+					</td>
+					<td>
+
+					</td>
+					<td>
+
+					</td>
+					<td>
+					</td>
+					<td>
+						{{model.LastYearDividendSumAggr}}
+					</td>
+					<td>
+					</td>
+					<td>
+						{{model.CurrentYearTransitionalDividendSumAggr}}
+					</td>
+					<td>
+					</td>
+					<td>
+						{{model.CurrentYearDividendSumAggr}}
+					</td>
+					<td>
+						{{model.Summary}}
+					</td>
+					<td>
+						{{model.SummaryYear}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="form-group">
+			<div class="col-sm-offset-6 col-sm-6">
+				<button type="button" (click)="ModalOpen()" class="btn btn-default" [style.display]="isNew? 'none' :'inline'"  [hidden]="isNew">Добавить</button>
+				<button type="button" (click)="Calculate()" class="btn btn-default" [style.display]="isNew? 'none' : 'inline'">Расcчитать</button>
+				<button type="button" (click)="Save()" [disabled]="!register9Form.form.valid" class="btn btn-default">Сохранить</button>
+				<button type="button" (click)="Back()" class="btn btn-default">Вернуться</button>
+			</div>
+		</div>
+		<modal #myModal>
+			<modal-header [show-close]="true">
+				<h4 class="modal-title">Cуммы дивидендов, выплаченные КИК, исключаемые из прибыли КИК</h4>
+			</modal-header>
+			<modal-body>
+				<div class="form-group">
+					<label for="StockholderName">Наименование акционера (участника), которому выплачиваются дивиденды</label>
+					<div>
+						<input type="text"
+							   class="form-control required"
+							   
+							   id="StockholderName"
+							   name="StockholderName"
+							   [(ngModel)]="register9DataItem.StockholderName">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="CountryCodeId">Страна регистрации (инкорпорации)</label>
+					<div>
+						<select class="form-control required"
+								
+								[(ngModel)]="register9DataItem.CountryCodeId"
+								directory-options="CountryCode"
+								id="CountryCodeId" name="CountryCodeId"></select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="LastYearDividendPaymentYear">Финансовый год, за который производится выплата</label>
+					<div>
+						<input type="text"
+							   class="form-control required"
+							   
+							   id="LastYearDividendPaymentYear"
+							   name="LastYearDividendPaymentYear"
+							   [(ngModel)]="register9DataItem.LastYearDividendPaymentYear">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="LastYearDividendPaymentData">Дата выплаты дивидендов, выплаченных в отчетном финансовом году из прибыли прошлых лет</label>
+					<div>
+						<input type="text"
+							   class="form-control date date-picker required"
+							   id="LastYearDividendPaymentData"
+							   name="LastYearDividendPaymentData"
+							   [(date)]="register9DataItem.LastYearDividendPaymentData">
+
+						<!--<input type="date"
+							   class="form-control"
+							   required
+							   id="LastYearDividendPaymentData"
+							   name="LastYearDividendPaymentData"
+							   [(ngModel)]="register9DataItem.LastYearDividendPaymentData">-->
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="LastYearDividendSum">Сумма дивидендов, выплаченных в отчетном финансовом году из прибыли прошлых лет</label>
+					<div>
+						<input type="text"
+							   class="form-control required"
+							   
+							   id="LastYearDividendSum"
+							   name="LastYearDividendSum"
+							   [(ngModel)]="register9DataItem.LastYearDividendSum">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="CurrentYearTransitionalDividendPaymentData">Дата выплаты промежуточных дивидендов, выплаченных КИК из прибыли финансового года, за который составлена финансовая отчетность</label>
+					<div>
+						<input type="text"
+							   class="form-control date date-picker required"
+							   id="CurrentYearTransitionalDividendPaymentData"
+							   name="CurrentYearTransitionalDividendPaymentData"
+							   [(date)]="register9DataItem.CurrentYearTransitionalDividendPaymentData">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="CurrentYearTransitionalDividendSum">Сумма  промежуточных дивидендов, выплаченных КИКиз прибыли финансового года, за который составлена финансовая отчетность</label>
+					<div>
+						<input type="text"
+							   class="form-control required"
+							   
+							   id="CurrentYearTransitionalDividendSum"
+							   name="CurrentYearTransitionalDividendSum"
+							   [(ngModel)]="register9DataItem.CurrentYearTransitionalDividendSum">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="CurrentYearDividendPaymentData">Дата выплаты дивидендов, выплаченные КИК в календарном году, следующем за годом, за который составлена финансовая отчетность </label>
+					<div>
+						<input type="text"
+							   class="form-control date date-picker required"
+							   id="CurrentYearDividendPaymentData"
+							   name="CurrentYearDividendPaymentData"
+							   [(date)]="register9DataItem.CurrentYearDividendPaymentData">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="CurrentYearDividendSum">Сумма  дивидендов, выплаченные КИК в календарном году, следующем за годом, за который составлена финансовая отчетность</label>
+					<div>
+						<input type="text"
+							   class="form-control required"
+							   
+							   id="CurrentYearDividendSum"
+							   name="CurrentYearDividendSum"
+							   [(ngModel)]="register9DataItem.CurrentYearDividendSum">
+					</div>
+				</div>
+			</modal-body>
+			<modal-footer>
+				<button type="button" class="btn btn-default" data-dismiss="modal" (click)="ModalClose()">Отменить</button>
+				<button type="button" class="btn btn-primary" (click)="ModalSave()">Сохранить</button>
+			</modal-footer>
+		</modal>
+	</form>
+</div>
+<preloader *ngIf="isLoading"></preloader>

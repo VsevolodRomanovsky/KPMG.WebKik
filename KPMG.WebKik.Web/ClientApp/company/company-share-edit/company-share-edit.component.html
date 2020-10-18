@@ -1,0 +1,290 @@
+﻿<div class="container" *ngIf="model">
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            <nav class="breadcrumb">
+                <project-in-company [project-id]="projectId"></project-in-company>
+                <span> > </span>
+                <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies']">Компании</a>
+                <span> > </span>
+                <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId]">{{model.OwnerProjectCompany.Name}}</a>
+                <span> > </span>
+                <a class="breadcrumb-item" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/share']">Владения</a>
+
+            </nav>
+        </div>
+        <div class="col-sm-8 col-sm-offset-4">
+            <h3 class="media-heading">Сведения об участии</h3>
+        </div>
+    </div>
+    <br>
+    <form #controlForm="ngForm" class="form-horizontal" (ngSubmit)="onSubmit()">
+
+
+
+
+
+
+
+
+
+
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Доля прямого участия (%)</label>
+            <div class="col-sm-4">
+                <input type="number" min="0" max="100"
+                       class="form-control"
+                       placeholder="Доля прямого участия (%)"
+                       required
+                       id="sharePart"
+                       name="sharePart"
+                       step="any"
+                       [(ngModel)]="model.SharePart">
+            </div>
+        </div>
+        <div class="form-group" *ngIf="!isIndividualCompany">
+            <label for="name" class="col-sm-4 control-label">Доля совместного участия с другими налоговыми резидентами РФ (%)</label>
+            <div class="col-sm-4">
+                <input type="number" min="0" max="100"
+                       class="form-control"
+                       placeholder="Доля совместного участия с другими налоговыми резидентами РФ (%)"
+                       required
+                       id="shareWithResidentsPart"
+                       name="shareWithResidentsPart"
+                       step="any"
+                       [(ngModel)]="model.ShareWithResidentsPart">
+            </div>
+        </div>
+        <div class="form-group" *ngIf="isIndividualCompany">
+            <label for="name" class="col-sm-4 control-label">Доля совместного участия с другими налоговыми резидентами РФ (%) (совместно с супругами и несовершеннолетними детьми)</label>
+            <div class="col-sm-4">
+                <input type="number" min="0" max="100"
+                       class="form-control"
+                       placeholder="Доля совместного участия с супругами и (или) несовершеннолетними детьми (%)"
+                       required
+                       id="shareWithFamilyPart"
+                       name="shareWithFamilyPart"
+                       [(ngModel)]="model.ShareWithFamilyPart">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Участие с</label>
+            <div class="col-sm-4">
+                <input type="text"
+                       class="form-control date date-picker required"
+                       placeholder="Участие с"
+                       required
+                       id="shareStartDate"
+                       name="shareStartDate"
+                       [(date)]="model.ShareStartDate"
+                       >
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Участие по </label>
+            <div class="col-sm-4">
+                <input type="text"
+                       class="form-control date date-picker"
+                       placeholder="Участие по "
+                       id="shareFinishDate"
+                       name="shareFinishDate"
+                       [(date)]="model.ShareFinishDate"
+                       >
+
+            </div>
+        </div>
+
+
+
+
+
+        <hr />
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--Domestic or Individual company-->
+        <div *ngIf="!isDependentForeignToDomestic">
+            <div *ngIf="isDomesticOrIndividualCompany">
+                <div class="form-group" *ngIf="!isDependentForeignToIndividual">
+                    <label for="name" class="col-sm-4 control-label">Является ли учредителем</label>
+                    <div class="col-sm-4">
+                        <input type="checkbox"
+                               class="checkbox-inline"
+                               placeholder="Является ли учредителем"
+                               id="IsFounder"
+                               name="IsFounder"
+                               [(ngModel)]="model.IsFounder">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">{{factControlTitle}}</label>
+                    <div class="col-sm-4">
+                        <input type="checkbox"
+                               class="checkbox-inline"
+                               placeholder="Осуществляет фактический контроль"
+                               id="IsControlledBy"
+                               name="IsControlledBy"
+                               [(ngModel)]="model.IsControlledBy">
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="!isDependentForeignToIndividual">
+                    <label for="name" class="col-sm-4 control-label">Дата возникновения основания</label>
+                    <div class="col-sm-4">
+                        <input type="text"
+                               class="form-control date date-picker"
+                               placeholder="Дата возникновения основания"
+                               required
+                               id="FoundDate"
+                               name=FoundDate
+                               [(date)]="model.FoundDate">
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--Individual company or Foreign company-->
+            <!--<div *ngIf="isForeignOrIndividualCompany && !isDependentForeignToIndividual">
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">В своих интересах</label>
+                    <div class="col-sm-4">
+                        <input type="checkbox"
+                               class="checkbox-inline"
+                               placeholder="В своих интересах"
+                               id="IsOwnInterest"
+                               name="IsOwnInterest"
+                               [(ngModel)]="model.IsOwnInterest">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">В отношении несовершеннолетних </label>
+                    <div class="col-sm-4">
+                        <input type="checkbox"
+                               class="checkbox-inline"
+                               placeholder="В отношении несовершеннолетних "
+                               id="IsChildInterest"
+                               name="IsChildInterest"
+                               [(ngModel)]="model.IsChildInterest">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">В отношении супруга </label>
+                    <div class="col-sm-4">
+                        <input type="checkbox"
+                               class="checkbox-inline"
+                               placeholder="В отношении супруга "
+                               id="IsPartnerInterest"
+                               name="IsPartnerInterest"
+                               [(ngModel)]="model.IsPartnerInterest">
+                    </div>
+                </div>
+            </div>-->
+        <!--Individual company with dependent Foreigncompany-->
+        <div *ngIf="isDependentForeignToIndividual">
+            <div class="form-group">
+                <label for="name" class="col-sm-4 control-label">В своих интересах</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="IsOwnInterest" [required]="null"
+                            name="IsOwnInterest" [(ngModel)]="model.IsOwnInterest">
+                        <option [ngValue]="true">Да</option>
+                        <option [ngValue]="false">Нет</option>
+                        <option [ngValue]="null">Не применимо</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="col-sm-4 control-label">В интересах супруга-(и)</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="IsPartnerInterest" [required]="null"
+                            name="IsPartnerInterest" [(ngModel)]="model.IsPartnerInterest">
+                        <option [ngValue]="true">Да</option>
+                        <option [ngValue]="false">Нет</option>
+                        <option [ngValue]="null">Не применимо</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="col-sm-4 control-label">В интересах несовершеннолетних детей </label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="IsChildInterest" [required]="null"
+                            name="IsChildInterest" [(ngModel)]="model.IsChildInterest">
+                        <option [ngValue]="true">Да</option>
+                        <option [ngValue]="false">Нет</option>
+                        <option [ngValue]="null">Не применимо</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+            <!--Foreign company-->
+            <!--Foreign light company-->
+            <div *ngIf="isForeignLightCompany">
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">Основание для участия в иностранной структуре:</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" [(ngModel)]="model.ForeignLightCompanyGrounds" #selectedState name="ForeignLightCompanyGrounds" required>
+                            <option *ngFor="let type of groundTypes" [value]="type.Key">{{type.Value}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ParticipantStatus" class="col-sm-4 control-label">Статус участника в соответствии с личным законом и (или) документом об учреждении иностранной структуры:</label>
+                    <div class="col-sm-4">
+                        <input type="text"
+                               class="form-control"
+                               required
+                               id="ParticipantStatus"
+                               name="ParticipantStatus"
+                               [(ngModel)]="model.ParticipantStatus">
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!isDependentForeignToDomestic">
+            <div class="form-group">
+                <label for="ControlGrounds" class="col-sm-4 control-label">{{controlGroundsTitle}}</label>
+                <div class="col-sm-4">
+                    <input type="text"
+                           class="form-control"
+                           required
+                           id="ControlGrounds"
+                           name="ControlGrounds"
+                           [(ngModel)]="model.ControlGrounds">
+                </div>
+            </div>
+            </div>
+
+            <div *ngIf="isDependentForeignToDomestic || isDependentForeignToIndividual">
+            <div class="form-group">
+                <label for="IsIndependentRecognition" class="col-sm-4 control-label">Самостоятельное признание КЛ</label>
+                <div class="col-sm-4">
+                    <input type="checkbox"
+                           class="checkbox-inline"
+                           placeholder="Самостоятельное признание КЛ "
+                           id="IsIndependentRecognition"
+                           name="IsIndependentRecognition"
+                           [(ngModel)]="model.IsIndependentRecognition">
+                </div>
+            </div>
+        </div>
+
+            <hr />
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <button type="submit" class="btn btn-default" [disabled]="!controlForm.form.valid">Сохранить</button>
+                    <button type="button" class="btn btn-default" [routerLink]="['/projects/' + projectId + '/companies/' + companyId + '/share']">Закрыть</button>
+                    <button type="button" class="btn btn-default pull-right" (click)="removeShare()">Удалить</button>
+                </div>
+            </div>
+</form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>
+

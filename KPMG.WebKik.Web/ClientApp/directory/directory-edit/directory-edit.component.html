@@ -1,0 +1,54 @@
+﻿<div *ngIf="directory" class="container">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>{{directory.Name}}</h3>
+        </div>
+    </div>
+    <form class="row" (ngSubmit)="addNewDirectoryEntry()" #formElement="ngForm">
+        <div class="col-sm-offset-1 col-sm-2">
+            <input class="form-control"
+                   type="text"
+                   placeholder="Код"
+                   [(ngModel)]="newDirectoryEntry.Code"
+                   name="code"
+                   required />
+        </div>
+        <div class="col-sm-6">
+            <input class="form-control"
+                   type="text"
+                   placeholder="Значение"
+                   [(ngModel)]="newDirectoryEntry.Name"
+                   name="name"
+                   required />
+        </div>
+        <div class="col-sm-2">
+            <button type="submit" class="btn btn-default" [disabled]="!formElement.form.valid">Добавить</button>
+        </div>
+    </form>
+    <p>&nbsp;</p>
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-10">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="text-center">Код</th>
+                        <th class="text-center">Значение</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let entry of directory.Entries">
+                        <td>
+                            {{entry.Code}}
+                        </td>
+                        <td>
+                            {{entry.Name}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p>&nbsp;</p>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

@@ -1,0 +1,9 @@
+﻿modal[wide] .modal-dialog {
+    width: 100%;
+}    
+
+modal[wide] .modal-content {
+    width: 80%;
+    margin-left: 10%;
+}
+

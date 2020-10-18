@@ -1,0 +1,784 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FEE444EA-0BC4-42F3-B513-7DDE1E6AC7D7}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KPMG.WebKik.Web</RootNamespace>
+    <AssemblyName>KPMG.Webkik.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elmah.Contrib.WebApi, Version=1.0.10.25, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elmah.Contrib.WebApi.1.0.10.25\lib\net45\Elmah.Contrib.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.OData.Core, Version=6.14.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.OData.Core.6.14.0\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.OData.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.OData.Edm, Version=6.14.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.OData.Edm.6.14.0\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.OData.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin.Extensions, Version=0.8.5.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Extensions.0.8.5\lib\net40\Owin.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Types, Version=0.8.5.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Types.0.8.5\lib\net40\Owin.Types.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.9.1.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.9.1\lib\net45\RazorEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.OData.5.7.0\lib\net45\System.Web.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="Unity.WebApi, Version=5.2.3.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.WebAPI.5.2.3\lib\net45\Unity.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\CustomDirectRouteProvider.cs" />
+    <Compile Include="App_Start\GlobalExceptionFilterAttribute.cs" />
+    <Compile Include="App_Start\Razor\SpaInfo.cs" />
+    <Compile Include="App_Start\Razor\SpaLayoutModel.cs" />
+    <Compile Include="App_Start\Razor\SpaRazorExtensions.cs" />
+    <Compile Include="App_Start\Razor\SpaRazorMiddleware.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\UnityExtensions.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Authorization\WebKikRoleProvider.cs" />
+    <Compile Include="Automapper\AutomapperInitializationAttribute.cs" />
+    <Compile Include="Automapper\InitializationHelper.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\NotificationOfKIK\NotificationOfKIKController.cs" />
+    <Compile Include="Controllers\NotificationOfKIK\NotificationOfKIKViewModel.cs" />
+    <Compile Include="Controllers\ProjectCompanyShare\ProjectCompanyFactShareViewModel.cs" />
+    <Compile Include="Controllers\ProjectCompanyShare\TaxExemptionViewModel.cs" />
+    <Compile Include="Controllers\ProjectCompanies\ProjectCompanyController.cs" />
+    <Compile Include="Controllers\PermissionController.cs" />
+    <Compile Include="Controllers\Directory\DirectoryController.cs" />
+    <Compile Include="Controllers\Register\Register10Controller.cs" />
+    <Compile Include="Controllers\Register\Register10DataViewModel.cs" />
+    <Compile Include="Controllers\Register\Register10ViewModel.cs" />
+    <Compile Include="Controllers\Register\Register1Controller.cs" />
+    <Compile Include="Controllers\Register\Register2Controller.cs" />
+    <Compile Include="Controllers\Register\Register3Controller.cs" />
+    <Compile Include="Controllers\Register\Register4Controller.cs" />
+    <Compile Include="Controllers\Register\Register5Controller.cs" />
+    <Compile Include="Controllers\Register\Register6Controller.cs" />
+    <Compile Include="Controllers\Register\Register7Controller.cs" />
+    <Compile Include="Controllers\Register\Register11Controller.cs" />
+    <Compile Include="Controllers\Register\Register11DataViewModel.cs" />
+    <Compile Include="Controllers\Register\Register9DataViewModel.cs" />
+    <Compile Include="Controllers\Register\Register11ViewModel.cs" />
+    <Compile Include="Controllers\Register\Register9ViewModel.cs" />
+    <Compile Include="Controllers\Register\Register9Controller.cs" />
+    <Compile Include="Controllers\Register\Register8Controller.cs" />
+    <Compile Include="Controllers\Register\Register8DataDto.cs" />
+    <Compile Include="Controllers\Register\Register8Dto.cs" />
+    <Compile Include="Controllers\Register\Register8ViewModel.cs" />
+    <Compile Include="Controllers\Register\RegisterController.cs" />
+    <Compile Include="Controllers\Role\RoleController.cs" />
+    <Compile Include="Controllers\ProjectCompanyShare\ProjectCompanyShareController.cs" />
+    <Compile Include="Controllers\NotificationsOfParticipation\NotificationOfParticipationController.cs" />
+    <Compile Include="Controllers\NotificationsOfParticipation\NotificationOfParticipationViewModel.cs" />
+    <Compile Include="Controllers\Signatory\SignatoryController.cs" />
+    <Compile Include="Controllers\Signatory\SignatoryViewModel.cs" />
+    <Compile Include="Controllers\SupportingDocuments\SupportingDocumentsController.cs" />
+    <Compile Include="Controllers\SupportingDocuments\SupportingDocumentsViewModel.cs" />
+    <Compile Include="Controllers\TaxReturn\TaxReturnController.cs" />
+    <Compile Include="Controllers\TaxReturn\TaxReturnViewModel.cs" />
+    <Compile Include="Controllers\User\UserController.cs" />
+    <Compile Include="Controllers\Project\ProjectController.cs" />
+    <Compile Include="Controllers\EntityController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Controllers\Directory\CountryCodeViewModel.cs" />
+    <Compile Include="Controllers\Directory\DirectoryEntryViewModel.cs" />
+    <Compile Include="Controllers\Directory\DirectoryViewModel.cs" />
+    <Compile Include="Controllers\Company\DocumentInformationViewModel.cs" />
+    <Compile Include="Controllers\Company\DomesticCompanyViewModel.cs" />
+    <Compile Include="Controllers\Company\ForeignCompanyViewModel.cs" />
+    <Compile Include="Controllers\Company\ForeignLightCompanyViewModel.cs" />
+    <Compile Include="Controllers\Company\IndividualCompanyViewModel.cs" />
+    <Compile Include="Controllers\Project\ProjectOwnershipLinkViewModel.cs" />
+    <Compile Include="Controllers\Project\ProjectOwnershipNodeViewModel.cs" />
+    <Compile Include="Controllers\ProjectCompanies\ProjectCompanyControlViewModel.cs" />
+    <Compile Include="Controllers\ProjectCompanyShare\ProjectCompanyShareViewModel.cs" />
+    <Compile Include="Controllers\ProjectCompanies\ProjectCompanyViewModel.cs" />
+    <Compile Include="Controllers\Register\Register1ViewModel.cs" />
+    <Compile Include="Controllers\Register\Register2ViewModel.cs" />
+    <Compile Include="Controllers\Register\Register3ViewModel.cs" />
+    <Compile Include="Controllers\Register\Register4ViewModel.cs" />
+    <Compile Include="Controllers\Register\Register5ViewModel.cs" />
+    <Compile Include="Controllers\Register\Register6ViewModel.cs" />
+    <Compile Include="Controllers\Register\Register7ViewModel.cs" />
+    <Compile Include="Controllers\Project\ProjectOwnershipViewModel.cs" />
+    <Compile Include="Controllers\Role\RoleViewModel.cs" />
+    <Compile Include="Controllers\User\UserViewModel.cs" />
+    <Compile Include="Controllers\Project\ProjectViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\app\app.component.html" />
+    <Content Include="ClientApp\app\auth-error\auth-error.component.html" />
+    <Content Include="ClientApp\app\navmenu\navmenu.component.html" />
+    <Content Include="ClientApp\company\company-share-edit\company-share-edit.component.html" />
+    <Content Include="ClientApp\company\company-create\company-create.component.html" />
+    <Content Include="ClientApp\company\company-create\domestic-company-create.component.html" />
+    <Content Include="ClientApp\company\company-create\foreignlight-company-create.component.html" />
+    <Content Include="ClientApp\company\company-create\individual-company-create.component.html" />
+    <Content Include="ClientApp\company\company-detail\company-detail.component.html" />
+    <Content Include="ClientApp\company\company-edit\domestic-company-edit.component.html" />
+    <Content Include="ClientApp\company\company-edit\foreign-company-edit.component.html" />
+    <Content Include="ClientApp\company\company-edit\foreignlight-company-edit.component.html" />
+    <Content Include="ClientApp\company\company-edit\individual-company-edit.component.html" />
+    <Content Include="ClientApp\company\company-in-register\company-in-register.component.html" />
+    <Content Include="ClientApp\company\company-list\company-list.component.html" />
+    <Content Include="ClientApp\company\company-share-create\company-share-create.component.html" />
+    <Content Include="ClientApp\company\company-share-ownership\company-share-ownership.component.html" />
+    <Content Include="ClientApp\company\company-tax-exemption-list\company-tax-exemption-list.component.html" />
+    <Content Include="ClientApp\company\company-tax-exemption\company-tax-exemption.component.html" />
+    <Content Include="ClientApp\company\notification-companies-options\notification-companies-options.component.html" />
+    <Content Include="ClientApp\company\kik-company-list\kik-company-list.component.html" />
+    <Content Include="ClientApp\directory\directory-list\directory-list.component.html" />
+    <Content Include="ClientApp\directory\directory-edit\directory-edit.component.html" />
+    <Content Include="ClientApp\directory\directory-options\directory-options.component.html" />
+    <Content Include="ClientApp\notification-of-kik\models\notification-of-kik.model.js" />
+    <Content Include="ClientApp\notification-of-kik\notification-of-kik-edit\notification-of-kik-edit.component.html" />
+    <Content Include="ClientApp\notification-of-kik\notification-of-kik-edit\notification-of-kik-edit.component.js" />
+    <Content Include="ClientApp\notification-of-kik\notification-of-kik-list\notification-of-kik-list.component.html" />
+    <Content Include="ClientApp\notification-of-kik\notification-of-kik-list\notification-of-kik-list.component.js" />
+    <Content Include="ClientApp\notification-of-kik\notification-of-kik-routing.module.js" />
+    <Content Include="ClientApp\notification-of-kik\notification-of-kik.module.js" />
+    <Content Include="ClientApp\notification-of-kik\notification-of-kik.service.js" />
+    <Content Include="ClientApp\notification-of-participation\notification-of-participation-list\notification-of-participation-list.component.html" />
+    <Content Include="ClientApp\notification-of-participation\notification-of-participation-edit\notification-of-participation-edit.component.html" />
+    <Content Include="ClientApp\notification-of-participation\notification-of-participation-supportingdocuments\notification-of-participation-supportingdocuments.component.html" />
+    <Content Include="ClientApp\notification-of-participation\notification-of-participation-supportingdocuments\notification-of-participation-supportingdocuments.component.js" />
+    <Content Include="ClientApp\project\project-in-company\project-in-company.component.html" />
+    <Content Include="ClientApp\project\project-ownership\project-ownership.component.html" />
+    <Content Include="ClientApp\project\project-edit\project-edit.component.html" />
+    <Content Include="ClientApp\project\project-detail\project-detail.component.html" />
+    <Content Include="ClientApp\register\register-list\register-list.component.html" />
+    <Content Include="ClientApp\register\register10\register10.component.html" />
+    <Content Include="ClientApp\register\register1\register1.component.html" />
+    <Content Include="ClientApp\register\register2\register2.component.html" />
+    <Content Include="ClientApp\register\register3\register3.component.html" />
+    <Content Include="ClientApp\register\register4\register4.component.html" />
+    <Content Include="ClientApp\register\register5\register5.component.html" />
+    <Content Include="ClientApp\register\register6\register6.component.html" />
+    <Content Include="ClientApp\register\register7\register7.component.html" />
+    <Content Include="ClientApp\register\register11\register11.component.html" />
+    <Content Include="ClientApp\register\register9\register9Modal.component.html" />
+    <Content Include="ClientApp\register\register9\register9.component.html" />
+    <Content Include="ClientApp\register\register8\register8.component.html" />
+    <Content Include="ClientApp\shared\ownership-graph\ownership-graph.component.html" />
+    <Content Include="ClientApp\shared\preloader\preloader.component.html" />
+    <Content Include="ClientApp\project\project-list\project-list.component.html" />
+    <Content Include="ClientApp\app\navmenu\logo.png" />
+    <Content Include="ClientApp\signatory\signatory-options\signatory-options.component.html" />
+    <Content Include="ClientApp\signatory\signatory-list\signatory-list.component.html" />
+    <Content Include="ClientApp\signatory\signatory-edit\signatory-edit.component.html" />
+    <Content Include="ClientApp\tax-return\tax-return-edit\tax-return-edit.component.html" />
+    <Content Include="ClientApp\tax-return\tax-return-list\tax-return-list.component.html" />
+    <Content Include="ClientApp\user\user-edit\user-edit.component.html" />
+    <Content Include="ClientApp\user\user-in-project\user-in-project.component.html" />
+    <Content Include="ClientApp\user\user-list\user-list.component.html" />
+    <Content Include="fonts\KPMG Web-Extra Light Italic.html" />
+    <Content Include="fonts\KPMG Web-Extra Light Italic.svg" />
+    <Content Include="fonts\KPMG Web-Extra Light.html" />
+    <Content Include="fonts\KPMG Web-Extra Light.svg" />
+    <Content Include="fonts\KPMG Web-Light Italic.html" />
+    <Content Include="fonts\KPMG Web-Light Italic.svg" />
+    <Content Include="fonts\KPMG Web-Light.html" />
+    <Content Include="fonts\KPMG Web-Light.svg" />
+    <Content Include="fonts\KPMG Web-Thin Italic.html" />
+    <Content Include="fonts\KPMG Web-Thin Italic.svg" />
+    <Content Include="fonts\KPMG Web-Thin.html" />
+    <Content Include="fonts\KPMG Web-Thin.svg" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="webpack.config.js" />
+    <Content Include="webpack.config.vendor.js">
+      <DependentUpon>webpack.config.js</DependentUpon>
+    </Content>
+    <Content Include="wwwroot\dist\89889688147bd7575d6327160d64e760.svg" />
+    <Content Include="wwwroot\dist\ClientApp\app\navmenu\logo.png" />
+    <Content Include="wwwroot\dist\images\KPMG.png" />
+    <Content Include="wwwroot\dist\images\removeImg.png" />
+    <Content Include="wwwroot\dist\main-client.js" />
+    <Content Include="wwwroot\dist\main.js" />
+    <Content Include="wwwroot\dist\styles\bootstrap-datepicker3.min.css" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\fonts\roboto-v15-latin-regular.svg" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\icons_16.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\slider_handles%402x.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\slider_handles.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\ui-icons_222222_256x240.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\ui-icons_454545_256x240.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\theme.css" />
+    <Content Include="wwwroot\dist\styles\Primeng\primeng.min.css" />
+    <Content Include="wwwroot\dist\styles\site.css" />
+    <Content Include="wwwroot\dist\vendor.css" />
+    <Content Include="wwwroot\dist\vendor.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include=".bootstraprc" />
+    <Content Include="index.cshtml" />
+    <Content Include="package.json" />
+    <Content Include=".vscode\settings.json" />
+    <Content Include=".vscode\tasks.json" />
+    <Content Include="typings\globals\bootstrap\typings.json" />
+    <Content Include="typings\globals\jquery\typings.json" />
+    <Content Include="tsconfig.json" />
+    <Content Include="typings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\app.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\auth-error\auth-error.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\navmenu\navmenu.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-share-edit\company-share-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-create\company-create.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-create\domestic-company-create.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-create\foreign-company-create.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-create\foreignlight-company-create.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-create\individual-company-create.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-edit\domestic-company-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-edit\foreign-company-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-edit\foreignlight-company-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-edit\individual-company-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-in-register\company-in-register.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-share-create\company-share-create.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-share-ownership\company-share-ownership.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-tax-exemption-list\company-tax-exemption-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-tax-exemption\company-tax-exemption.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company.module.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company.service.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-detail\company-detail.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\company-list\company-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\company-fact-share.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\document-confirmation.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\notification-companies-options\notification-companies-options.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\kik-company-list\kik-company-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\company-share.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\country-code.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\grounds-type.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\individual-company.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\foreign-light-company.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\foreign-company.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\domestic-company.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\project-company.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\document-information.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\rationaly-type.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\share-type.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\state.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\tax-exemption-result.model.ts" />
+    <TypeScriptCompile Include="ClientApp\company\models\tax-exemption.model.ts" />
+    <TypeScriptCompile Include="ClientApp\directory\directory-options\directory-options.component.ts" />
+    <TypeScriptCompile Include="ClientApp\directory\directory-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\directory\directory.module.ts" />
+    <TypeScriptCompile Include="ClientApp\directory\directory-auth.service.ts" />
+    <TypeScriptCompile Include="ClientApp\directory\directory-list\directory-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\directory\directory-edit\directory-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\directory\models\directory-entry.model.ts" />
+    <TypeScriptCompile Include="ClientApp\directory\models\directory.model.ts" />
+    <TypeScriptCompile Include="ClientApp\directory\directory.service.ts" />
+    <TypeScriptCompile Include="ClientApp\notification-of-kik\models\notification-of-kik.model.ts" />
+    <TypeScriptCompile Include="ClientApp\notification-of-kik\notification-of-kik-edit\notification-of-kik-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\notification-of-kik\notification-of-kik-list\notification-of-kik-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\notification-of-kik\notification-of-kik-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\notification-of-kik\notification-of-kik.module.ts" />
+    <TypeScriptCompile Include="ClientApp\notification-of-kik\notification-of-kik.service.ts" />
+    <TypeScriptCompile Include="ClientApp\notification-of-participation\models\notification-of-participation.model.ts" />
+    <TypeScriptCompile Include="ClientApp\notification-of-participation\notification-of-participation-list\notification-of-participation-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\notification-of-participation\notification-of-participation-supportingdocuments\notification-of-participation-supportingdocuments.component.ts" />
+    <TypeScriptCompile Include="ClientApp\notification-of-participation\notification-of-participation.module.ts" />
+    <TypeScriptCompile Include="ClientApp\notification-of-participation\notification-of-participation.service.ts" />
+    <TypeScriptCompile Include="ClientApp\notification-of-participation\notification-of-participation-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\notification-of-participation\notification-of-participation-edit\notification-of-participation-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\project\project-in-company\project-in-company.component.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\country-code.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register-list.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register-type.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register11.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register9.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register10.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register10section.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register8.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register11data.model .ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register9data.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register8reserves.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\registerSection.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register10\register10.component.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register10\register10.pipe.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register11\register11.pipe.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register11\register11.component.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register9\register9Modal.component.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register9\register9.component.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register8\register8.component.ts" />
+    <TypeScriptCompile Include="ClientApp\register\services\register.service.ts" />
+    <TypeScriptCompile Include="ClientApp\register\services\register1.service.ts" />
+    <TypeScriptCompile Include="ClientApp\register\services\register10.service.ts" />
+    <TypeScriptCompile Include="ClientApp\register\services\register2.service.ts" />
+    <TypeScriptCompile Include="ClientApp\register\services\register3.service.ts" />
+    <TypeScriptCompile Include="ClientApp\register\services\register4.service.ts" />
+    <TypeScriptCompile Include="ClientApp\register\services\register5.service.ts" />
+    <TypeScriptCompile Include="ClientApp\register\services\register6.service.ts" />
+    <TypeScriptCompile Include="ClientApp\register\services\register7.service.ts" />
+    <TypeScriptCompile Include="ClientApp\register\services\register11.service.ts" />
+    <TypeScriptCompile Include="ClientApp\register\services\register9.service.ts" />
+    <TypeScriptCompile Include="ClientApp\register\services\register8.service.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\date-value-accessor\date-value-accessor.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\date.directive.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\models\key-value.model.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\models\year.model.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\ownership-graph\ownership-graph-config.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\ownership-graph\ownership-graph-chart.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\ownership-graph\ownership-graph-link.ts" />
+    <TypeScriptCompile Include="ClientApp\project\model\project-ownership.model.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\ownership-graph\ownership-graph-node.ts" />
+    <TypeScriptCompile Include="ClientApp\project\project-ownership\project-ownership.component.ts" />
+    <TypeScriptCompile Include="ClientApp\project\project-edit\project-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\project\project-detail\project-detail.component.ts" />
+    <TypeScriptCompile Include="ClientApp\project\model\project.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register1.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register2.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register3.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register4.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register5.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register6.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\models\register7.model.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register-list\register-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register.module.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register1\register1.component.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register2\register2.component.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register3\register3.component.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register4\register4.component.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register5\register5.component.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register6\register6.component.ts" />
+    <TypeScriptCompile Include="ClientApp\register\register7\register7.component.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\base.service.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\ownership-graph\ownership-graph.component.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\permission\permission.model.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\preloader\preloader.component.ts" />
+    <TypeScriptCompile Include="ClientApp\project\project-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\project\project.module.ts" />
+    <TypeScriptCompile Include="ClientApp\project\project.service.ts" />
+    <TypeScriptCompile Include="ClientApp\project\project-list\project-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\boot.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\shared.module.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\permission\permission.service.ts" />
+    <TypeScriptCompile Include="ClientApp\signatory\signatory-options\signatory-options.component.ts" />
+    <TypeScriptCompile Include="ClientApp\signatory\signatory-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\signatory\models\signatory.model.ts" />
+    <TypeScriptCompile Include="ClientApp\signatory\signatory.module.ts" />
+    <TypeScriptCompile Include="ClientApp\signatory\signatory-list\signatory-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\signatory\signatory.service.ts" />
+    <TypeScriptCompile Include="ClientApp\signatory\signatory-edit\signatory-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\tax-return\tax-return-edit\tax-return-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\tax-return\tax-return-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\tax-return\models\tax-return.model.ts" />
+    <TypeScriptCompile Include="ClientApp\tax-return\tax-return-list\tax-return-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\tax-return\tax-return.module.ts" />
+    <TypeScriptCompile Include="ClientApp\tax-return\tax-return.service.ts" />
+    <TypeScriptCompile Include="ClientApp\user\models\role.model.ts" />
+    <TypeScriptCompile Include="ClientApp\user\user-edit\user-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\user\user-in-project\user-in-project.component.ts" />
+    <TypeScriptCompile Include="ClientApp\user\user-list\user-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\user\user-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\user\models\user.model.ts" />
+    <TypeScriptCompile Include="ClientApp\user\user.module.ts" />
+    <TypeScriptCompile Include="ClientApp\user\role.service.ts" />
+    <TypeScriptCompile Include="ClientApp\user\user.service.ts" />
+    <TypeScriptCompile Include="typings\ag-grid\ag-grid-ext.d.ts" />
+    <TypeScriptCompile Include="typings\ag-grid\ag-grid.d.ts" />
+    <TypeScriptCompile Include="typings\bootstrap.datepicker\bootstrap.datepicker.d.ts" />
+    <TypeScriptCompile Include="typings\d3.d.ts" />
+    <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jquery\index.d.ts" />
+    <TypeScriptCompile Include="typings\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KPMG.WebKik.Algorithms\KPMG.WebKik.Algorithms.csproj">
+      <Project>{8787FD87-5213-4BAB-8377-2EB50C0FD5E4}</Project>
+      <Name>KPMG.WebKik.Algorithms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KPMG.WebKik.Contracts\KPMG.WebKik.Contracts.csproj">
+      <Project>{D67F4E18-34A7-4785-8E06-F090B3CA1F63}</Project>
+      <Name>KPMG.WebKik.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KPMG.Webkik.Utils\KPMG.Webkik.Utils.csproj">
+      <Project>{2a394526-2544-49d0-800f-5ca4b314a754}</Project>
+      <Name>KPMG.Webkik.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KPMG.WebKik.Data\KPMG.WebKik.Data.csproj">
+      <Project>{6B17871E-C28F-48F8-8B5B-CD4591592643}</Project>
+      <Name>KPMG.WebKik.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KPMG.WebKik.Models\KPMG.WebKik.Models.csproj">
+      <Project>{F0C5A52B-BEE8-4EBA-93A7-D9BC52C43622}</Project>
+      <Name>KPMG.WebKik.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KPMG.WebKik.Services\KPMG.WebKik.Services.csproj">
+      <Project>{4a5bb601-2c1a-4c78-a16e-5bccfc0e8e34}</Project>
+      <Name>KPMG.WebKik.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\app\app.component.scss" />
+    <Content Include="ClientApp\shared\preloader\preloader.component.scss" />
+    <Content Include="bootstrap\customizations.scss" />
+    <Content Include="bootstrap\pre-customizations.scss" />
+    <Content Include="fonts\KPMG Web-Extra Light Italic.eot" />
+    <Content Include="fonts\KPMG Web-Extra Light Italic.ttf" />
+    <Content Include="fonts\KPMG Web-Extra Light Italic.woff" />
+    <Content Include="fonts\KPMG Web-Extra Light Italic.woff2" />
+    <Content Include="fonts\KPMG Web-Extra Light.eot" />
+    <Content Include="fonts\KPMG Web-Extra Light.ttf" />
+    <Content Include="fonts\KPMG Web-Extra Light.woff" />
+    <Content Include="fonts\KPMG Web-Extra Light.woff2" />
+    <Content Include="fonts\KPMG Web-Light Italic.eot" />
+    <Content Include="fonts\KPMG Web-Light Italic.ttf" />
+    <Content Include="fonts\KPMG Web-Light Italic.woff" />
+    <Content Include="fonts\KPMG Web-Light Italic.woff2" />
+    <Content Include="fonts\KPMG Web-Light.eot" />
+    <Content Include="fonts\KPMG Web-Light.ttf" />
+    <Content Include="fonts\KPMG Web-Light.woff" />
+    <Content Include="fonts\KPMG Web-Light.woff2" />
+    <Content Include="fonts\KPMG Web-Thin Italic.eot" />
+    <Content Include="fonts\KPMG Web-Thin Italic.ttf" />
+    <Content Include="fonts\KPMG Web-Thin Italic.woff" />
+    <Content Include="fonts\KPMG Web-Thin Italic.woff2" />
+    <Content Include="fonts\KPMG Web-Thin.eot" />
+    <Content Include="fonts\KPMG Web-Thin.ttf" />
+    <Content Include="fonts\KPMG Web-Thin.woff" />
+    <Content Include="fonts\KPMG Web-Thin.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\app\navmenu\navmenu.component.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\company\company-create\foreign-company-create.component.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\directoriesData.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\shared\ownership-graph\ownership-graph.component.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\project\project-ownership\project-ownership.component.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\UU.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\register\register-list\register-list.component.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\TaxReturn.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="wwwroot\dist\main-client.js.map" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\fonts\roboto-v15-latin-regular.eot" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\fonts\roboto-v15-latin-regular.ttf" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\fonts\roboto-v15-latin-regular.woff" />
+    <Content Include="wwwroot\dist\styles\Primeng\omega\fonts\roboto-v15-latin-regular.woff2" />
+    <Content Include="wwwroot\dist\vendor-manifest.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\register\register10\register10.component.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\CFC_Notification_template_original.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\notification-of-kik\models\notification-of-kik.model.js.map" />
+    <Content Include="ClientApp\notification-of-kik\notification-of-kik-edit\notification-of-kik-edit.component.js.map" />
+    <Content Include="ClientApp\notification-of-kik\notification-of-kik-list\notification-of-kik-list.component.js.map" />
+    <Content Include="ClientApp\notification-of-kik\notification-of-kik-routing.module.js.map" />
+    <Content Include="ClientApp\notification-of-kik\notification-of-kik.module.js.map" />
+    <Content Include="ClientApp\notification-of-kik\notification-of-kik.service.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\company\company-list\company-list.scss" />
+    <Content Include="ClientApp\notification-of-participation\notification-of-participation-supportingdocuments\notification-of-participation-supportingdocuments.component.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\CFC_Notification_template_OK.xlsx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55077</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55077/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,31 @@
+﻿<div *ngIf="ownership" class="container">
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+            <h3 class="kik">Граф владения {{ownership.Project.Name}}</h3>
+        </div>
+        <div class="col-sm-3 text-right">
+            <h3>
+                <button class="btn btn-default" (click)="SaveAsPng()">
+                    <span class='glyphicon glyphicon-download-alt'></span> Сохранить
+                </button>
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId]">Информация</a>
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/companies']">Компании</a>
+                <a class="list-group-item active" [routerLink]="['/projects/' + projectId + '/ownership']">Граф владения</a>
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/notificationsofparticipation']">Уведомления об участии</a>
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/taxreturn']">Налоговые декларации</a>
+                <a class="list-group-item" [routerLink]="['/projects/' + projectId + '/notificationofkik']">Уведомления о КИКах</a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <ownership-graph [nodes]="ownership.Nodes" [links]="ownership.Links" #ownershipGraph></ownership-graph>
+        </div>
+    </div>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

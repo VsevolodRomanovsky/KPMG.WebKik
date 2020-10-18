@@ -1,0 +1,97 @@
+﻿<div *ngIf="model" class="container">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>{{title}}</h3>
+        </div>
+    </div>
+    <form class="form-horizontal" (ngSubmit)="onSubmit()" #formElement="ngForm">
+        <div class="form-group">
+            <label for="lastName" class="col-sm-4 control-label">Фамилия</label>
+            <div class="col-sm-8">
+                <input type="text"
+                       class="form-control"
+                       placeholder="фамилия"
+                       required
+                       id="lastName"
+                       name="lastName"
+                       [(ngModel)]="model.LastName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="firstName" class="col-sm-4 control-label">Имя</label>
+            <div class="col-sm-8">
+                <input type="text"
+                       class="form-control"
+                       placeholder="имя"
+                       required
+                       id="firstName"
+                       name="firstName"
+                       [(ngModel)]="model.FirstName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="middleName" class="col-sm-4 control-label">Отчество</label>
+            <div class="col-sm-8">
+                <input type="text"
+                       class="form-control"
+                       placeholder="отчество"
+                       required
+                       id="middleName"
+                       name="middleName"
+                       [(ngModel)]="model.MiddleName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="userLogin" class="col-sm-4 control-label">Тип</label>
+            <div class="col-sm-8">
+                <select class="form-control"
+                        directory-options="SignatoryCode"
+                        [(ngModel)]="model.SignatoryCodeId"
+                        id="signatoryCode"
+                        name="signatoryCode"
+                        required></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="userLogin" class="col-sm-4 control-label">Телефон</label>
+            <div class="col-sm-8">
+                <input type="text"
+                       class="form-control"
+                       placeholder="телефон"
+                       required
+                       id="phoneNumber"
+                       name="phoneNumber"
+                       [(ngModel)]="model.PhoneNumber">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-4 control-label">E-mail</label>
+            <div class="col-sm-8">
+                <input type="email"
+                       class="form-control"
+                       placeholder="эл. почта"
+                       id="email"
+                       name="email"
+                       [(ngModel)]="model.Email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="confirmationDocument" class="col-sm-4 control-label">Документ, подтверждающий полномочия</label>
+            <div class="col-sm-8">
+                <select class="form-control required"
+                        directory-options="DocumentCode"
+                        [(ngModel)]="model.ConfirmationDocumentId"
+                        id="confirmationDocument"
+                        required
+                        name="confirmationDocument"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <button type="submit" class="btn btn-default" [disabled]="!formElement.form.valid">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

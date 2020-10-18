@@ -1,0 +1,150 @@
+﻿
+<div class="container" *ngIf="model">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>Расчет доли эффективной ставки налогообложения и средневзвешенной налоговой ставки по налогу на прибыль КИК  </h3>
+        </div>
+    </div>
+    <form #registerForm="ngForm" class="form-horizontal">
+        <company-in-register [company-id]="shareId"></company-in-register>
+        <div class="form-group">
+            <label for="currency" class="col-sm-6 control-label">Валюта</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       class="form-control"
+                       required
+                       id="currency"
+                       name="currency"
+                       [(ngModel)]="model.Currency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="incomeTaxRated" class="col-sm-6 control-label">Налог на доходы (прибыль), исчисленный КИК и ее обособленными подразделениями в соответствии со своим личным законом</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="incomeTaxRated"
+                       name="incomeTaxRated"
+                       [(ngModel)]="model.IncomeTaxRated">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="incomeTaxDeducted" class="col-sm-6 control-label">Налог на доходы, удержанный с доходов (прибыли) КИК у источника выплаты таких доходов</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="incomeTaxDeducted"
+                       name="incomeTaxDeducted"
+                       [(ngModel)]="model.IncomeTaxDeducted">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="incomeTaxCorrection" class="col-sm-6 control-label">Суммы налога, которые относятся к доходам (прибыли), учтенным при расчете прибыли КИК и подлежат исчислению и (или) удержанию в иных периодах, отличных от периода, за который исчислена прибыль КИК</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="incomeTaxCorrection"
+                       name="incomeTaxCorrection"
+                       [(ngModel)]="model.IncomeTaxCorrection">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="KIKProfit" class="col-sm-6 control-label">Прибыль (убыток) КИК, рассчитанная на основании данных финансовой отчетности</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="KIKProfit"
+                       name="KIKProfit"
+                       [(ngModel)]="model.KIKProfit">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeTaxEffected" class="col-sm-6 control-label">Эффективная ставка налогообложения дохода (прибыли), %</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="IncomeTaxEffected"
+                       name="IncomeTaxEffected"
+                       [(ngModel)]="model.IncomeTaxEffected">
+            </div>
+        </div>
+        <div class="form-group" *ngIf="model.KIKProfit != null && model.KIKProfit > 0">
+            <label for="KIKDividends" class="col-sm-6 control-label">Дивиденды, полученные КИК</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="KIKDividends"
+                       name="KIKDividends"
+                       [(ngModel)]="model.KIKDividends">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="KIKProfitMinusDividends" class="col-sm-6 control-label">Прибыль КИК, уменьшенная на сумму дивидендов, полученных КИК</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="KIKProfitMinusDividends"
+                       name="KIKProfitMinusDividends"
+                       [(ngModel)]="model.KIKProfitMinusDividends">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-6 control-label">Ставка налога на прибыль в соответствии с абзацем первым пункта 1 статьи 284 НК РФ, %</label>
+            <div class="col-sm-6">
+                <output class="form-control">20%</output>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-6 control-label">Ставка налога на прибыль в соответствии с подпунктом 2 пункта 3 статьи 284 НК РФ, %</label>
+            <div class="col-sm-6">
+                <output class="form-control">13%</output>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="AverageTaxRate" class="col-sm-6 control-label">Средневзвешенная налоговая ставка по налогу на прибыль, %</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="AverageTaxRate"
+                       name="AverageTaxRate"
+                       [(ngModel)]="model.AverageTaxRate">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="AverageTaxRatePart" class="col-sm-6 control-label">Доля эффективной ставки налогообложения дохода в средневзвешенной налоговой ставке по налогу на прибыль организаций, %</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="AverageTaxRatePart"
+                       name="AverageTaxRatePart"
+                       [(ngModel)]="model.AverageTaxRatePart">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-6 col-sm-6">
+                <button type="button" (click)="Calculate()" class="btn btn-default">Расcчитать</button>
+                <button type="button" (click)="Save()" [disabled]="!registerForm.form.valid" class="btn btn-default">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

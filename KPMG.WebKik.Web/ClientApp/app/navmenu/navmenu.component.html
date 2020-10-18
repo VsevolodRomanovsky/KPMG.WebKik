@@ -1,0 +1,37 @@
+﻿<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#kik-app-navmenu-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand kik-brand" [routerLink]="['']">
+                <img src="wwwroot/dist/ClientApp/app/navmenu/logo.png" class="kik-logo" alt="KPMG logo" />
+            </a>
+            <a class="navbar-brand" [routerLink]="['']">
+                WebKik
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="kik-app-navmenu-navbar">
+            <ul class="nav navbar-nav">
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['/projects']">
+                        <span class='glyphicon glyphicon-tasks'></span> Проекты
+                    </a>
+                </li>
+                <li *ngIf="permission?.IsAdmin" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/users']">
+                        <span class='glyphicon glyphicon-user'></span> Пользователи
+                    </a>
+                </li>
+                <li *ngIf="permission?.IsAdmin" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/directories']">
+                        <span class='glyphicon glyphicon-list-alt'></span> Справочники
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,6 @@
+﻿<option></option>
+<option *ngFor="let code of directory.Entries"
+        [attr.selected]="code.Id == selectedId ? true : null"
+        [value]="code.Id">
+    {{code.Name}}
+</option>

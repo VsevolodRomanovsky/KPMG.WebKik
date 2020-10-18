@@ -1,0 +1,256 @@
+﻿<div class="container" *ngIf="model">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>Расчет налога на прибыль, подлежащего уплате в бюджет РФ, в отношении КИК </h3>
+        </div>
+    </div>
+    <form #registerForm="ngForm" class="form-horizontal">
+        <company-in-register [company-id]="shareId"></company-in-register>
+        <div class="form-group">
+            <label for="Currency" class="col-sm-6 control-label">Валюта</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       class="form-control"
+                       required
+                       id="Currency"
+                       name="Currency"
+                       [(ngModel)]="model.Currency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="KIKProfitCurrency" class="col-sm-6 control-label">Прибыль КИК, валюта</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       disabled="disabled"
+                       id="KIKProfitCurrency"
+                       name="KIKProfitCurrency"
+                       [(ngModel)]="model.KIKProfitCurrency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="KIKConversionRate" class="col-sm-6 control-label">Курс пересчета</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="KIKConversionRate"
+                       name="KIKConversionRate"
+                       [(ngModel)]="model.KIKConversionRate">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="KIKProfitRUR" class="col-sm-6 control-label">Прибыль КИК, руб</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       disabled="disabled"
+                       id="KIKProfitRUR"
+                       name="KIKProfitRUR"
+                       [(ngModel)]="model.KIKProfitRUR">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="KIKSharePart" class="col-sm-6 control-label">Доля участия "Компания" в прибыли КИК, %</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="KIKSharePart"
+                       name="KIKSharePart"
+                       [(ngModel)]="model.KIKSharePart">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="KIKProfitSharePart" class="col-sm-6 control-label">Прибыль КИК пропорционально доле участия (доле прибыли КИК), руб</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="KIKProfitSharePart"
+                       name="KIKProfitSharePart"
+                       [(ngModel)]="model.KIKProfitSharePart">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="KIKProfitPartForTax" class="col-sm-6 control-label">Величина прибыли, подлежащая учету у иных контролирующих лиц, через которых реализовано косвенное участие, соответствующая доле участия налогоплательщика, руб</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="KIKProfitPartForTax"
+                       name="KIKProfitPartForTax"
+                       [(ngModel)]="model.KIKProfitPartForTax">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="KIKTaxBasePart" class="col-sm-6 control-label">Налоговая база для исчисления налога, руб</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="KIKTaxBasePart"
+                       name="KIKTaxBasePart"
+                       [(ngModel)]="model.KIKTaxBasePart">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="TaxPercentValue" class="col-sm-6 control-label">Ставка налога, %</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="TaxPercentValue"
+                       name="TaxPercentValue"
+                       [(ngModel)]="model.TaxPercentValue">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="TaxSumCurrency" class="col-sm-6 control-label">Курс пересчета суммы налога исчисленного</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="TaxSumCurrency"
+                       name="TaxSumCurrency"
+                       [(ngModel)]="model.TaxSumCurrency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="TaxSum" class="col-sm-6 control-label">Сумма налога, исчисленная в отношении доли прибыли КИК, руб</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="TaxSum"
+                       name="TaxSum"
+                       [(ngModel)]="model.TaxSum">
+            </div>
+        </div>
+        <legend>Сумма налога к уменьшению, исчисленная (удержанная) в отношении прибыли (дохода) КИК в соответствии с законодательством иностранного государства</legend>
+        <div class="form-group">
+            <label for="ForeginContryProfitCurrency" class="col-sm-6 control-label">в отношении прибыли (дохода) КИК по финансовой отчетности, сумма налога, валюта </label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="ForeginContryProfitCurrency"
+                       name="ForeginContryProfitCurrency"
+                       [(ngModel)]="model.ForeginContryProfitCurrency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ForeginContryProfitRUR" class="col-sm-6 control-label">в отношении прибыли (дохода) КИК по финансовой отчетности, сумма налога, руб. </label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="ForeginContryProfitRUR"
+                       name="ForeginContryProfitRUR"
+                       [(ngModel)]="model.ForeginContryProfitRUR">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ForeginContryEarningsCurrency" class="col-sm-6 control-label"> в отношении доходов КИК от источников в других иностранных государствах, сумма налога, валюта  </label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="ForeginContryEarningsCurrency"
+                       name="ForeginContryEarningsCurrency"
+                       [(ngModel)]="model.ForeginContryEarningsCurrency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ForeginContryEarningsRUR" class="col-sm-6 control-label"> в отношении доходов КИК от источников в других иностранных государствах, сумма налога, руб.  </label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="ForeginContryEarningsRUR"
+                       name="ForeginContryEarningsRUR"
+                       [(ngModel)]="model.ForeginContryEarningsRUR">
+            </div>
+        </div>
+        <legend>Сумма налога к уменьшению, исчисленная (удержанная) в отношении прибыли (дохода) КИК в соответствии с законодательством РФ </legend>
+        <div class="form-group">
+            <label for="DomesticProfitCurrency" class="col-sm-6 control-label">в отношении доходов КИК от источников в РФ, не связанных с предпринимательской деятельностью КИК в РФ, и удержанный в соответствии с законодательством РФ, сумма налога, руб.</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="DomesticProfitCurrency"
+                       name="DomesticProfitCurrency"
+                       [(ngModel)]="model.DomesticProfitCurrency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="DomesticContryEarningsCurrency" class="col-sm-6 control-label"> сумма налогов - всего, руб.</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="DomesticContryEarningsCurrency"
+                       name="DomesticContryEarningsCurrency"
+                       [(ngModel)]="model.DomesticContryEarningsCurrency">
+            </div>
+        </div>
+  
+        <div class="form-group">
+            <label for="RURResultForPart" class="col-sm-6 control-label">Доля участия Компании в КИК, %</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="RURResultForPart"
+                       name="RURResultForPart"
+                       [(ngModel)]="model.RURResultForPart">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="DomesticContryEarningsRUR" class="col-sm-6 control-label">Сумма налога к уменьшению, пропорционально доле участия в КИК
+(сумма налога к зачету), руб.
+</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="DomesticContryEarningsRUR"
+                       name="DomesticContryEarningsRUR"
+                       [(ngModel)]="model.DomesticContryEarningsRUR">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="RURResultSum" class="col-sm-6 control-label">Сумма налога к зачету, руб.</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="RURResultSum"
+                       name="RURResultSum"
+                       [(ngModel)]="model.RURResultSum">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="RURResultTax" class="col-sm-6 control-label"> Сумма налога в отношении прибыли КИК, подлежащая уплате в бюджет РФ, руб.</label>
+            <div class="col-sm-6">
+                <input type="number"
+                       class="form-control"
+                       required
+                       id="RURResultTax"
+                       name="RURResultTax"
+                       [(ngModel)]="model.RURResultTax">
+            </div>
+        </div>
+       
+        
+        <div class="form-group">
+            <div class="col-sm-offset-6 col-sm-6">
+                <button type="button" (click)="Calculate()" class="btn btn-default">Расcчитать</button>
+                <button type="button" (click)="Save()" [disabled]="!registerForm.form.valid" class="btn btn-default">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<preloader *ngIf="isLoading"></preloader>

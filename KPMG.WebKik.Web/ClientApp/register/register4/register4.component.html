@@ -1,0 +1,502 @@
+﻿<div class="container" *ngIf="model">
+    <div class="row">
+        <div class="center-block text-center">
+            <h3>Расчет доли пассивных доходов КИК</h3>
+        </div>
+    </div>
+    <form #registerForm="ngForm" class="form-horizontal">
+        <company-in-register [company-id]="shareId"></company-in-register>
+        <div class="form-group">
+            <label for="Currency" class="col-sm-6 control-label">Валюта</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       class="form-control"
+                       required
+                       id="Currency"
+                       name="Currency"
+                       [(ngModel)]="model.Currency">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeKIKTotalAmount" class="col-sm-6 control-label">Общая сумма доходов КИК по данным финансовой отчетности, в том числе:</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeKIKTotalAmount"
+                       name="IncomeKIKTotalAmount"
+                       [(ngModel)]="model.IncomeKIKTotalAmount">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="IncomeNotIncluded" class="col-sm-6 control-label">Доходы, не учитываемые при расчете доли пассивных доходов</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="IncomeNotIncluded"
+                       name="IncomeNotIncluded"
+                       [(ngModel)]="model.IncomeNotIncluded">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="IncomeFromRateDifference" class="col-sm-6 control-label">Доходы в виде курсовых разниц</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromRateDifference"
+                       name="IncomeFromRateDifference"
+                       [(ngModel)]="model.IncomeFromRateDifference">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromRegisteredCapitals" class="col-sm-6 control-label">Доходы от переоценки долей в уставном (складочном) капитале (фонде) организации по справедливой стоимости</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromRegisteredCapitals"
+                       name="IncomeFromRegisteredCapitals"
+                       [(ngModel)]="model.IncomeFromRegisteredCapitals">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromShares" class="col-sm-6 control-label">Доходы от переоценки паев в паевых фондах кооперативов и паевых инвестиционных фондах по справедливой стоимости</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromShares"
+                       name="IncomeFromShares"
+                       [(ngModel)]="model.IncomeFromShares">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromSecurities" class="col-sm-6 control-label">Доходы от переоценки ценных бумаг по справедливой стоимости</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromSecurities"
+                       name="IncomeFromSecurities"
+                       [(ngModel)]="model.IncomeFromSecurities">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromDerivatives" class="col-sm-6 control-label">Доходы от переоценки производных финансовых инструментов по справедливой стоимости</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromDerivatives"
+                       name="IncomeFromDerivatives"
+                       [(ngModel)]="model.IncomeFromDerivatives">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromSubsidiary" class="col-sm-6 control-label">Доходы в виде сумм прибыли дочерних (ассоциированных) организаций (за исключением дивидендов), признанных в финансовой отчетности КИК </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromSubsidiary"
+                       name="IncomeFromSubsidiary"
+                       [(ngModel)]="model.IncomeFromSubsidiary">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromReserveRestore" class="col-sm-6 control-label">Доходы от восстановления резервов </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromReserveRestore"
+                       name="IncomeFromReserveRestore"
+                       [(ngModel)]="model.IncomeFromReserveRestore">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeKIKSummary" class="col-sm-6 control-label">Общая сумма доходов КИК, уменьшенная на величину доходов, неучитываемых при расчете доли пассивных доходов</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="IncomeKIKSummary"
+                       name="IncomeKIKSummary"
+                       [(ngModel)]="model.IncomeKIKSummary">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="PassiveIncomeKIKSummary" class="col-sm-6 control-label">Сумма доходов КИК от пассивной деятельности (всего), в том числе: </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="PassiveIncomeKIKSummary"
+                       name="PassiveIncomeKIKSummary"
+                       [(ngModel)]="model.PassiveIncomeKIKSummary">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="DividendsSum" class="col-sm-6 control-label">Дивиденды, полученные иностранной компанией (всего), в том числе: </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="DividendsSum"
+                       name="DividendsSum"
+                       [(ngModel)]="model.DividendsSum">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="DividendsFromActiveCompanies" class="col-sm-6 control-label">Дивиденды от активных иностранных компаний </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="DividendsFromActiveCompanies"
+                       name="DividendsFromActiveCompanies"
+                       [(ngModel)]="model.DividendsFromActiveCompanies">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="DividendsFromHoldingCompanies" class="col-sm-6 control-label">Дивиденды активных иностранных субхолдинговых компаний </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="DividendsFromHoldingCompanies"
+                       name="DividendsFromHoldingCompanies"
+                       [(ngModel)]="model.DividendsFromHoldingCompanies">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromAppropriationProfit" class="col-sm-6 control-label">Доходы, полученные в результате распределения прибыли или имущества организаций, иных лиц или их объединений, в том числе при их ликвидации </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromAppropriationProfit"
+                       name="IncomeFromAppropriationProfit"
+                       [(ngModel)]="model.IncomeFromAppropriationProfit">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeFromDebentures" class="col-sm-6 control-label">Процентный доход от долговых обязательств любого вида </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IncomeFromDebentures"
+                       name="IncomeFromDebentures"
+                       [(ngModel)]="model.IncomeFromDebentures">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IntellectialPropRightsIncome" class="col-sm-6 control-label">Доходы от использования прав на объекты интеллектуальной собственности </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="IntellectialPropRightsIncome"
+                       name="IntellectialPropRightsIncome"
+                       [(ngModel)]="model.IntellectialPropRightsIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="SharedPartsIncome" class="col-sm-6 control-label">Доходы от реализации акций (долей) и (или) уступки прав в иностранной организации, не являющейся юридическим лицом по иностранному праву  </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="SharedPartsIncome"
+                       name="SharedPartsIncome"
+                       [(ngModel)]="model.SharedPartsIncome">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="FISSIncome" class="col-sm-6 control-label">Доходы по операциям с ФИСС (производными финансовыми инструментами) </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="FISSIncome"
+                       name="FISSIncome"
+                       [(ngModel)]="model.FISSIncome">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ImmovablePropertyIncome" class="col-sm-6 control-label">Доходы от реализации недвижимого имущества </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ImmovablePropertyIncome"
+                       name="ImmovablePropertyIncome"
+                       [(ngModel)]="model.ImmovablePropertyIncome">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="LeasePropertyIncome" class="col-sm-6 control-label">Доходы от сдачи в аренду или субаренду имущества</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="LeasePropertyIncome"
+                       name="LeasePropertyIncome"
+                       [(ngModel)]="model.LeasePropertyIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="InvestmentUnitsIncome" class="col-sm-6 control-label">Доходы от реализации (в том числе погашения) инвестиционных паев паевых инвестиционных фондов</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="InvestmentUnitsIncome"
+                       name="InvestmentUnitsIncome"
+                       [(ngModel)]="model.InvestmentUnitsIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ServicesIncome" class="col-sm-6 control-label">Доходы от оказания услуг</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="ServicesIncome"
+                       name="ServicesIncome"
+                       [(ngModel)]="model.ServicesIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ServicesConsultingIncome" class="col-sm-6 control-label">- от оказания консультационных услуг</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ServicesConsultingIncome"
+                       name="ServicesConsultingIncome"
+                       [(ngModel)]="model.ServicesConsultingIncome">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ServicesLegalIncome" class="col-sm-6 control-label">- от оказания юридических услуг</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ServicesLegalIncome"
+                       name="ServicesLegalIncome"
+                       [(ngModel)]="model.ServicesLegalIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ServicesAccountingIncome" class="col-sm-6 control-label">- от оказания бухгалтерских услуг</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ServicesAccountingIncome"
+                       name="ServicesAccountingIncome"
+                       [(ngModel)]="model.ServicesAccountingIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ServicesAuditIncome" class="col-sm-6 control-label">- от оказания аудиторских услуг </label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ServicesAuditIncome"
+                       name="ServicesAuditIncome"
+                       [(ngModel)]="model.ServicesAuditIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ServicesEngineeringIncome" class="col-sm-6 control-label">- от оказания инжиниринговых услуг</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ServicesEngineeringIncome"
+                       name="ServicesEngineeringIncome"
+                       [(ngModel)]="model.ServicesEngineeringIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ServicesAdvertisingIncome" class="col-sm-6 control-label">- от оказания рекламных услуг</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ServicesAdvertisingIncome"
+                       name="ServicesAdvertisingIncome"
+                       [(ngModel)]="model.ServicesAdvertisingIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ServicesMarketingIncome" class="col-sm-6 control-label">- от оказания маркетинговых услуг</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ServicesMarketingIncome"
+                       name="ServicesMarketingIncome"
+                       [(ngModel)]="model.ServicesMarketingIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ServicesInformationProcessingIncome" class="col-sm-6 control-label">- от оказания услуг по обработке информации</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ServicesInformationProcessingIncome"
+                       name="ServicesInformationProcessingIncome"
+                       [(ngModel)]="model.ServicesInformationProcessingIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ServicesReseachAndDevelopmentIncome" class="col-sm-6 control-label">- от  проведения научно-исследовательских и опытно-конструкторских работ</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ServicesReseachAndDevelopmentIncome"
+                       name="ServicesReseachAndDevelopmentIncome"
+                       [(ngModel)]="model.ServicesReseachAndDevelopmentIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ServicesStaffProvidingIncome" class="col-sm-6 control-label">Доходы от услуг по предоставлению персонала</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="ServicesStaffProvidingIncome"
+                       name="ServicesStaffProvidingIncome"
+                       [(ngModel)]="model.ServicesStaffProvidingIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="OtherIncome" class="col-sm-6 control-label">Иные аналогичные доходы</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       required
+                       id="OtherIncome"
+                       name="OtherIncome"
+                       [(ngModel)]="model.OtherIncome">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeSumExceptDividendsFromActiveCompanies" class="col-sm-6 control-label">Сумма доходов, указанных в пункте 4 статьи 309.1 НК РФ (за исключением дивидендов от активных иностранных компаний)</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="IncomeSumExceptDividendsFromActiveCompanies"
+                       name="IncomeSumExceptDividendsFromActiveCompanies"
+                       [(ngModel)]="model.IncomeSumExceptDividendsFromActiveCompanies">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IncomeSumExceptDividendsFromHoldingCompanies" class="col-sm-6 control-label">Сумма доходов, указанных в пункте 4 статьи 309.1 НК РФ (за исключением дивидендов от активных иностранных компаний и (или) активных иностранных субхолдинговых компаний)</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="IncomeSumExceptDividendsFromHoldingCompanies"
+                       name="IncomeSumExceptDividendsFromHoldingCompanies"
+                       [(ngModel)]="model.IncomeSumExceptDividendsFromHoldingCompanies">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="PassivePartIncomeValue" class="col-sm-6 control-label">Доля пассивных доходов в общей сумме доходов*, %</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="PassivePartIncomeValue"
+                       name="PassivePartIncomeValue"
+                       [(ngModel)]="model.PassivePartIncomeValue">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="PassivePartWithoutDividendsIncomeValue" class="col-sm-6 control-label">Доля пассивных доходов в общей сумме доходов, рассчитанная без учета дивидендов от активных иностранных компаний**, %</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="PassivePartWithoutDividendsIncomeValue"
+                       name="PassivePartWithoutDividendsIncomeValue"
+                       [(ngModel)]="model.PassivePartWithoutDividendsIncomeValue">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="PassivePartWithoutDividendsAndHoldingsIncomeValue" class="col-sm-6 control-label">Доля пассивных доходов в общей сумме доходов, рассчитанная без учета дивидендов от активных иностранных компаний и активных иностранных субхолдинговых компаний***, %</label>
+            <div class="col-sm-6">
+                <input type="text"
+                       pattern="^[+]?\d+([.]\d+)?$"
+                       class="form-control"
+                       disabled="disabled"
+                       id="PassivePartWithoutDividendsAndHoldingsIncomeValue"
+                       name="PassivePartWithoutDividendsAndHoldingsIncomeValue"
+                       [(ngModel)]="model.PassivePartWithoutDividendsAndHoldingsIncomeValue">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-6 col-sm-6">
+                <button type="button" (click)="Calculate()" class="btn btn-default">Расcчитать</button>
+                <button type="button" (click)="Save()" [disabled]="!registerForm.form.valid" class="btn btn-default">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+<preloader *ngIf="isLoading"></preloader>

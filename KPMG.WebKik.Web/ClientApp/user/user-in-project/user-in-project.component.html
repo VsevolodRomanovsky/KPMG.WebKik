@@ -1,0 +1,17 @@
+﻿<ol>
+    <li *ngFor="let user of userList">
+        {{user.DisplayName}}
+        <span class="glyphicon glyphicon-remove kik-clickable" 
+              title="Удалить пользователя из проекта"
+              *ngIf="permission.IsAdmin"
+              (click)="removeUser(user)"></span>
+    </li>
+</ol>
+<div class="form-inline" *ngIf="permission.IsAdmin">
+    <div class="form-group">
+        <select class="form-control" [(ngModel)]="selectedUserToAdd">
+            <option [ngValue]="user" *ngFor="let user of usersToAdd">{{user.DisplayName}}</option>
+        </select>
+        <button type="button" class="btn btn-default" [disabled]="!selectedUserToAdd" (click)="addUser()">Добавить</button>
+    </div>
+</div>
